@@ -823,3 +823,231 @@ input[type="range"]::-moz-range-thumb {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
+/* =========================================================
+   DAY MODE + THEME TOGGLE  (paste at the very bottom of styles.css)
+   ========================================================= */
+
+/* ---------- Toggle button ---------- */
+.theme-toggle { margin-left: auto; margin-right: 10px; padding: 4px; border-radius: 999px; }
+.tt-track {
+  position: relative; display: flex; align-items: center; justify-content: space-between;
+  width: 64px; height: 32px; padding: 0 8px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.tt-icon { position: relative; z-index: 2; width: 15px; height: 15px; color: #5b6476; transition: color 0.4s, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.tt-icon svg { width: 15px; height: 15px; }
+.tt-moon { color: #fff; }
+.tt-knob {
+  position: absolute; top: 3px; left: 3px; z-index: 1; width: 24px; height: 24px; border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #22d3ee);
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.5s, box-shadow 0.5s;
+}
+.theme-toggle:hover .tt-track { border-color: rgba(129, 140, 248, 0.6); }
+
+/* Keep nav links centred now that the toggle is added */
+@media (min-width: 901px) {
+  .nav { position: relative; }
+  .nav-links { position: absolute; left: 50%; transform: translateX(-50%); }
+}
+
+/* Smooth switch for browsers without the circle reveal */
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease !important;
+}
+::view-transition-old(root),
+::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+
+/* ---------- Day mode colours ---------- */
+html.light {
+  --bg: #f3f5fb;
+  --bg-2: #ffffff;
+  --panel: #ffffff;
+  --surface: rgba(255, 255, 255, 0.75);
+  --border: rgba(15, 23, 42, 0.08);
+  --border-2: rgba(15, 23, 42, 0.13);
+  --text: #1e293b;
+  --muted: #4f5d75;
+  --dim: #8a94a8;
+  --grad: linear-gradient(120deg, #4f46e5 0%, #6366f1 30%, #0891b2 75%, #06b6d4 100%);
+}
+
+/* Product mock-ups stay dark in day mode so they pop */
+html.light .console,
+html.light .phone,
+html.light .calc-result {
+  --bg: #07090e;
+  --bg-2: #0b0f17;
+  --surface: rgba(255, 255, 255, 0.035);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-2: rgba(255, 255, 255, 0.14);
+  --text: #eef1f6;
+  --muted: #8c96a8;
+  --dim: #5b6476;
+  --grad: linear-gradient(120deg, #a5b4fc 0%, #818cf8 30%, #22d3ee 75%, #67e8f9 100%);
+  color: var(--text);
+}
+html.light .console { box-shadow: 0 40px 90px -30px rgba(30, 41, 99, 0.55), 0 0 0 1px rgba(99, 102, 241, 0.15); }
+html.light .phone { box-shadow: 0 50px 110px -30px rgba(79, 70, 229, 0.5); }
+
+/* Toggle in day mode */
+html.light .tt-track { background: rgba(15, 23, 42, 0.05); border-color: rgba(15, 23, 42, 0.12); box-shadow: inset 0 2px 6px rgba(30, 41, 99, 0.12); }
+html.light .tt-moon { color: #8a94a8; }
+html.light .tt-sun { color: #fff; transform: rotate(90deg); }
+html.light .tt-knob {
+  transform: translateX(32px);
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  box-shadow: 0 0 18px rgba(251, 191, 36, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Background */
+html.light .bg-glow {
+  background:
+    radial-gradient(60rem 40rem at 8% -10%, rgba(99, 102, 241, 0.2), transparent 60%),
+    radial-gradient(50rem 36rem at 100% 0%, rgba(34, 211, 238, 0.2), transparent 60%),
+    radial-gradient(45rem 30rem at 50% 115%, rgba(244, 114, 182, 0.1), transparent 60%);
+}
+html.light .bg-grid {
+  background-image:
+    linear-gradient(rgba(30, 41, 99, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 41, 99, 0.055) 1px, transparent 1px);
+}
+
+/* Glass, nav, menu */
+html.light .glass { background: rgba(255, 255, 255, 0.72); box-shadow: 0 10px 40px -20px rgba(30, 41, 99, 0.25), inset 0 1px 0 #fff; }
+html.light .header.scrolled .nav { box-shadow: 0 20px 50px -24px rgba(30, 41, 99, 0.35); }
+html.light .brand-name { color: #0a0f1f; }
+html.light .nav-link:hover,
+html.light .nav-link.active { color: #0a0f1f; }
+html.light .menu-btn { background: #fff; border-color: rgba(15, 23, 42, 0.12); }
+html.light .menu-btn span { background: #0a0f1f; }
+html.light .mobile-menu { background: #fff; }
+html.light .m-link { color: #334155; }
+html.light .m-link:hover { background: rgba(15, 23, 42, 0.05); color: #0a0f1f; }
+
+/* Headings & text */
+html.light .hero-title,
+html.light h2,
+html.light .card h3,
+html.light .compare-head h3,
+html.light .mini-title,
+html.light .step-card h3,
+html.light .feature-list p,
+html.light .uc h4,
+html.light .field output,
+html.light .faq summary,
+html.light .fc-title { color: #0a0f1f; }
+html.light .eyebrow { color: #4f46e5; }
+html.light .badge { color: #4338ca; background: rgba(99, 102, 241, 0.08); }
+html.light .hero-points svg { color: #0891b2; }
+html.light .stack-list span { color: #a0aac0; }
+html.light .stack-list span:hover { color: #0a0f1f; }
+
+/* Buttons */
+html.light .btn-glass { color: #0a0f1f; background: #fff; box-shadow: 0 8px 24px -14px rgba(30, 41, 99, 0.35); }
+html.light .btn-glass:hover { background: #fff; }
+
+/* Floating labels */
+html.light .float-card,
+html.light .try-hint { background: rgba(255, 255, 255, 0.9); box-shadow: 0 20px 50px -20px rgba(30, 41, 99, 0.35); }
+html.light .try-hint p:last-child { color: #0a0f1f; }
+html.light .try-hint .mono-label { color: #0891b2; }
+
+/* Cards */
+html.light .card,
+html.light .uc,
+html.light .faq details {
+  background: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0.7));
+  box-shadow: 0 18px 40px -28px rgba(30, 41, 99, 0.3);
+}
+html.light .card:hover { box-shadow: 0 34px 80px -30px rgba(79, 70, 229, 0.4); }
+html.light .faq details[open] { background: #fff; }
+
+/* Tags & chips */
+html.light .tag-indigo { color: #4338ca; }
+html.light .tag-cyan { color: #0e7490; }
+html.light .tag-green { color: #047857; }
+html.light .compare-head .chip-red { color: #b91c1c; }
+html.light .compare-head .chip-green { color: #047857; }
+html.light .pills span { background: #fff; }
+
+/* Compare */
+html.light .compare-col.bad { background: linear-gradient(180deg, rgba(248, 113, 113, 0.07), #fff); }
+html.light .compare-col.good { background: linear-gradient(180deg, rgba(52, 211, 153, 0.1), #fff); }
+html.light .compare-list li { color: #1e293b; }
+html.light .bad .compare-list li { color: #4f5d75; }
+html.light .bad .mark { color: #dc2626; }
+html.light .good .mark { color: #059669; }
+
+/* Bento details */
+html.light .flow,
+html.light .mini-table,
+html.light .mini-row { background: #f1f4fb; }
+html.light .flow-node span { background: #fff; color: #64748b; }
+html.light .flow-node.n2 span { color: #6366f1; }
+html.light .flow-node.n3 span { color: #4f46e5; }
+html.light .flow-node.n4 span { color: #0891b2; }
+html.light .flow-node.n5 span { color: #059669; }
+html.light .flow-node p,
+html.light .feed-row p { color: #1e293b; }
+html.light .feed-row,
+html.light .mini-table div,
+html.light .mini-icon { background: #fff; }
+html.light .mini-table div { color: #1e293b; }
+html.light .s-green { color: #047857; }
+html.light .s-amber { color: #b45309; }
+html.light .s-indigo { color: #4338ca; }
+html.light .mi-green,
+html.light .fi-green { color: #059669; }
+html.light .mi-indigo,
+html.light .fi-indigo { color: #4f46e5; }
+html.light .mi-cyan,
+html.light .fi-cyan { color: #0891b2; }
+
+/* Steps */
+html.light .steps-line { background: rgba(15, 23, 42, 0.08); }
+html.light .step-num { background: #fff; color: #0a0f1f; }
+
+/* StockSense & contact panels */
+html.light .spotlight,
+html.light .contact { box-shadow: 0 40px 90px -50px rgba(79, 70, 229, 0.45); }
+
+/* Use-case tabs */
+html.light .tabs { background: #fff; box-shadow: 0 10px 30px -24px rgba(30, 41, 99, 0.4); }
+html.light .tab:hover { color: #0a0f1f; }
+html.light .tab.on { color: #fff; }
+
+/* Calculator */
+html.light .calc { background: #fff; box-shadow: 0 40px 90px -50px rgba(79, 70, 229, 0.45); }
+html.light .field label { color: #334155; }
+html.light .field input {
+  background: linear-gradient(90deg, #6366f1 0%, #22d3ee var(--val, 50%), rgba(15, 23, 42, 0.1) var(--val, 50%));
+}
+
+/* Why us */
+html.light .why-card li { color: #475569; }
+html.light .wi-indigo { color: #4338ca; }
+html.light .wi-cyan { color: #0e7490; }
+html.light .wi-green { color: #047857; }
+
+/* Contact form */
+html.light .contact-steps li { color: #1e293b; }
+html.light .link-btn { color: #0891b2; }
+html.light .link-btn:hover { color: #0a0f1f; }
+html.light .form { background: #f8faff; box-shadow: 0 30px 60px -40px rgba(30, 41, 99, 0.45); }
+html.light .input label { color: #334155; }
+html.light .input input,
+html.light .input select,
+html.light .input textarea { background: #fff; color: #0a0f1f; }
+html.light .input select option { background: #fff; color: #0a0f1f; }
+html.light .input input::placeholder,
+html.light .input textarea::placeholder { color: #94a3b8; }
+
+/* Footer & floating UI */
+html.light .footer-links button:hover { color: #0a0f1f; }
+html.light .to-top { background: rgba(255, 255, 255, 0.9); color: #0a0f1f; box-shadow: 0 16px 40px -20px rgba(30, 41, 99, 0.4); }
+html.light .toast { background: #fff; color: #0a0f1f; box-shadow: 0 20px 50px -20px rgba(30, 41, 99, 0.4); }
