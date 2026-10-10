@@ -432,3 +432,53 @@ if (document.readyState === "loading") {
 } else {
   initSite();
 }
+/* =========================================================
+   DAY / NIGHT MODE  (paste at the very bottom of script.js)
+   ========================================================= */
+(function () {
+  function setupTheme() {
+    var root = document.documentElement;
+    var btn = document.getElementById("themeToggle");
+    var meta = document.getElementsByName("theme-color")[0];
+    if (!btn || btn.getAttribute("data-ready")) return;
+    btn.setAttribute("data-ready", "1");
+
+    function apply(theme) {
+      root.classList.toggle("light", theme === "light");
+      try { localStorage.setItem("av-theme", theme); } catch (e) {}
+      if (meta) meta.setAttribute("content", theme === "light" ? "#F3F5FB" : "#07090E");
+      btn.setAttribute("aria-label", theme === "light" ? "Switch to night mode" : "Switch to day mode");
+    }
+
+    btn.addEventListener("click", function (e) {
+      var next = root.classList.contains("light") ? "dark" : "light";
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (document.startViewTransition && !reduce) {
+        var r = btn.getBoundingClientRect();
+        var x = e.clientX || r.left + r.width / 2;
+        var y = e.clientY || r.top + r.height / 2;
+        var radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+        var t = document.startViewTransition(function () { apply(next); });
+        t.ready.then(function () {
+          root.animate(
+            { clipPath: ["circle(0px at " + x + "px " + y + "px)", "circle(" + radius + "px at " + x + "px " + y + "px)"] },
+            { duration: 650, easing: "cubic-bezier(.2,.8,.2,1)", pseudoElement: "::view-transition-new(root)" }
+          );
+        }).catch(function () {});
+      } else {
+        root.classList.add("theme-anim");
+        apply(next);
+        setTimeout(function () { root.classList.remove("theme-anim"); }, 550);
+      }
+    });
+
+    apply(root.classList.contains("light") ? "light" : "dark");
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupTheme);
+  } else {
+    setupTheme();
+  }
+})();
