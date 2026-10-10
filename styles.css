@@ -793,7 +793,7 @@ input[type="range"\]::-moz-range-thumb {
   .stat { font-size: 17px; }
   .stack { margin-top: 64px; }
   .stack-list { gap: 10px 22px; }
-  .stack-list span { font-size: 13px; }
+  .stack-list span { font-ze: 13px; }
   .bento .card, .bento-a { padding: 24px !important; }
   .bento-b, .bento-c, .bento-d, .bento-e { grid-column: span 6; }
   .bento-a h3 { font-size: 23px; }
@@ -822,8 +822,9 @@ input[type="range"\]::-moz-range-thumb {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .reveal { opacity: 1; transform: none; }
 }
+
 /* =========================================================
-   DAY MODE + THEME TOGGLE  (paste at the very bottom of styles.css)
+   DAY MODE + THEME TOGGLE
    ========================================================= */
 
 /* ---------- Toggle button ---------- */
@@ -1073,3 +1074,31 @@ button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation
   .brand-name { font-size: 15px; }
 }
 html.light .contact-steps span { color: #fff; background: linear-gradient(135deg, #6366f1, #0891b2); border-color: transparent; }
+
+/* =========================================================
+   MOBILE THEME TOGGLE — compact icon button beside the menu
+   ========================================================= */
+@media (max-width: 960px) {
+  .nav-actions { margin-left: auto; gap: 8px; align-items: center; }
+  .theme-toggle {
+    position: relative; width: 42px; height: 42px; padding: 0; border-radius: 12px;
+    display: grid; place-items: center; overflow: hidden;
+    border: 1px solid var(--border-2); background: rgba(255, 255, 255, 0.04);
+    transition: border-color 0.25s, background 0.25s, transform 0.15s;
+  }
+  .theme-toggle:active { transform: scale(0.94); }
+  .tt-track,
+  html.light .tt-track {
+    width: 18px; height: 18px; padding: 0; display: grid; place-items: center;
+    background: none; border: 0; box-shadow: none;
+  }
+  .tt-knob { display: none; }
+  .tt-icon { grid-area: 1 / 1; width: 18px; height: 18px; transition: opacity 0.3s, transform 0.45s var(--ease); }
+  .tt-icon svg { width: 18px; height: 18px; }
+  .tt-moon { color: #c7d2fe; opacity: 1; transform: none; filter: drop-shadow(0 0 6px rgba(129, 140, 248, 0.7)); }
+  .tt-sun { color: #f59e0b; opacity: 0; transform: rotate(-90deg) scale(0.5); }
+  html.light .tt-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
+  html.light .tt-sun { color: #f59e0b; opacity: 1; transform: none; filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.6)); }
+  html.light .theme-toggle { background: #fff; border-color: rgba(15, 23, 42, 0.12); }
+  .theme-toggle:hover .tt-track { border-color: transparent; }
+}
