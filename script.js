@@ -2,7 +2,7 @@
    AutomatioVisio — script.js
    Change your contact email here (used everywhere on the site)
    ========================================================= */
-const CONTACT_EMAIL = "hello@automatiovisio.com";
+const CONTACT_EMAIL = "automatiovisio@gmail.com";
 
 function initSite() {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
