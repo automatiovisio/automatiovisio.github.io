@@ -5,6 +5,9 @@
 const CONTACT_EMAIL = "automatiovisio@gmail.com";
 
 function initSite() {
+  if (window.__avReady) return;
+  window.__avReady = true;
+  document.documentElement.classList.add("js");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -40,7 +43,7 @@ function initSite() {
     if (mobileMenu.classList.contains("open") && !e.target.closest("#header")) setMenu(false);
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
-  window.addEventListener("resize", () => { if (window.innerWidth > 900) setMenu(false); });
+  window.addEventListener("resize", () => { if (window.innerWidth > 960) setMenu(false); });
 
   /* ---------- Smooth scroll navigation ---------- */
   function goTo(id) {
@@ -54,12 +57,13 @@ function initSite() {
     window.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
     history.replaceState(null, "", id === "top" ? location.pathname : "#" + id);
   }
-  $$("[data-go]").forEach((btn) =>
-    btn.addEventListener("click", () => {
-      setMenu(false);
-      goTo(btn.dataset.go);
-    })
-  );
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-go]");
+    if (!btn) return;
+    e.preventDefault();
+    setMenu(false);
+    goTo(btn.dataset.go);
+  });
   if (location.hash) {
     const id = location.hash.slice(1);
     setTimeout(() => goTo(id), 150);
@@ -99,7 +103,7 @@ function initSite() {
     if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
   }, { passive: true });
   onScroll();
-  toTop.addEventListener("click", () => goTo("top"));
+  
 
   /* ---------- Reveal on scroll ---------- */
   const revealEls = $$(".reveal");
@@ -114,6 +118,16 @@ function initSite() {
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
     revealEls.forEach((el) => io.observe(el));
+    // Safety net: reveal anything already scrolled past (fast scrolling / jump links)
+    const sweep = () => {
+      const limit = window.innerHeight;
+      revealEls.forEach((el) => {
+        if (!el.classList.contains("in") && el.getBoundingClientRect().top < limit) el.classList.add("in");
+      });
+    };
+    let sweepTimer;
+    window.addEventListener("scroll", () => { clearTimeout(sweepTimer); sweepTimer = setTimeout(sweep, 120); }, { passive: true });
+    window.addEventListener("load", sweep);
   } else {
     revealEls.forEach((el) => el.classList.add("in"));
   }
@@ -158,7 +172,7 @@ function initSite() {
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.min(70, Math.floor((w * h) / 22000));
+      const count = Math.min(window.innerWidth < 640 ? 28 : 64, Math.floor((w * h) / 22000));
       points = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
@@ -181,7 +195,7 @@ function initSite() {
           const dx = p.x - q.x, dy = p.y - q.y;
           const d = dx * dx + dy * dy;
           if (d < 16000) {
-            ctx.strokeStyle = "rgba(129,140,248," + (0.16 * (1 - d / 16000)) + ")";
+            ctx.strokeStyle = "rgba(" + (document.documentElement.classList.contains("light") ? "99,102,241" : "129,140,248") + "," + (0.16 * (1 - d / 16000)) + ")";
             ctx.lineWidth = 1;
             ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
           }
@@ -192,7 +206,7 @@ function initSite() {
           ctx.strokeStyle = "rgba(34,211,238," + (0.35 * (1 - md / 32000)) + ")";
           ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
         }
-        ctx.fillStyle = "rgba(165,180,252,0.55)";
+        ctx.fillStyle = document.documentElement.classList.contains("light") ? "rgba(79,70,229,0.5)" : "rgba(165,180,252,0.55)";
         ctx.beginPath(); ctx.arc(p.x, p.y, 1.4, 0, Math.PI * 2); ctx.fill();
       }
       requestAnimationFrame(draw);
@@ -224,7 +238,7 @@ function initSite() {
   /* ---------- Hero live automation console ---------- */
   const requests = [
     { id: "PR-2048", type: "Purchase request", who: "Outlet 12", approver: "Finance Checker" },
-    { id: "FA-0317", type: "Fixed asset request", who: "Admin Dept", approver: "Finance Manager" },
+    { id: "PA-0317", type: "Asset purchase approval", who: "Admin Dept", approver: "Finance Manager" },
     { id: "SC-1190", type: "Stock count", who: "Main Store", approver: "Ops Manager" },
     { id: "CL-0562", type: "Expense claim", who: "Sales Team", approver: "Head of Sales" }
   ];
