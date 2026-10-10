@@ -4,7 +4,7 @@
    ========================================================= */
 const CONTACT_EMAIL = "hello@automatiovisio.com";
 
-document.addEventListener("DOMContentLoaded", () => {
+function initSite() {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -426,4 +426,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ["#fName", "#fEmail", "#fMsg"].forEach((s) =>
     $(s).addEventListener("input", (e) => e.target.classList.remove("invalid"))
   );
-});
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initSite);
+} else {
+  initSite();
+}
