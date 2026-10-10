@@ -9,9 +9,11 @@
   <meta property="og:title" content="AutomatioVisio | Work smarter, not harder.">
   <meta property="og:description" content="Custom automation and enterprise software built around how your business actually runs.">
   <meta property="og:type" content="website">
-  favicon.svg
-  styles.css
-  script.js" defer></script>
+  <style>@import url("styles.css");</style>
+  <script>
+    document.head.appendChild(Object.assign(document.createElement("link"), { rel: "icon", type: "image/svg+xml", href: "favicon.svg" }));
+    document.head.appendChild(Object.assign(document.createElement("script"), { src: "script.js" }));
+  </script>
 </head>
 <body>
 
