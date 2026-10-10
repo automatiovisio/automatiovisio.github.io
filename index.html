@@ -17,7 +17,7 @@
   <meta property="og:title" content="AutomatioVisio | Work smarter, not harder.">
   <meta property="og:description" content="Custom automation and enterprise software built around how your business actually runs.">
   <meta property="og:type" content="website">
-  <style>@import url("styles.css?v=7");</style>
+  <style>@import url("styles.css?v=9");</style>
   <script>
     document.head.appendChild(Object.assign(document.createElement("link"), { rel: "icon", type: "image/svg+xml", href: "favicon.svg" }));
   </script>
@@ -142,15 +142,6 @@
               <div><p class="stat" id="runCount">1,284</p><p class="mono-label">Runs this month</p></div>
               <div><p class="stat stat-green">100%</p><p class="mono-label">Audit trail</p></div>
             </div>
-          </div>
-
-          <div class="float-card fc-1">
-            <span class="fc-icon fc-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
-            <div><p class="fc-title">Approved in one click</p><p class="fc-sub">From phone, email or Teams</p></div>
-          </div>
-          <div class="float-card fc-2">
-            <span class="fc-icon fc-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M20 10a8 8 0 0 0-14.3-4M4 14a8 8 0 0 0 14.3 4"/></svg></span>
-            <div><p class="fc-title">Records synced</p><p class="fc-sub">No re-typing. Ever.</p></div>
           </div>
         </div>
       </div>
@@ -441,19 +432,19 @@
 
             <div class="field">
               <div class="field-top"><label for="cPeople">People doing this task</label><output id="oPeople">5</output></div>
-              <input type="range" id="cPeople" min="1" max="50" value="5">
+              <input class="range" type="range" id="cPeople" min="1" max="50" value="5">
             </div>
             <div class="field">
               <div class="field-top"><label for="cHours">Hours per person, per week</label><output id="oHours">6</output></div>
-              <input type="range" id="cHours" min="1" max="40" value="6">
+              <input class="range" type="range" id="cHours" min="1" max="40" value="6">
             </div>
             <div class="field">
               <div class="field-top"><label for="cRate">Cost per hour (RM)</label><output id="oRate">35</output></div>
-              <input type="range" id="cRate" min="10" max="200" step="5" value="35">
+              <input class="range" type="range" id="cRate" min="10" max="200" step="5" value="35">
             </div>
             <div class="field">
               <div class="field-top"><label for="cPct">Share that can be automated</label><output id="oPct">60%</output></div>
-              <input type="range" id="cPct" min="20" max="90" step="5" value="60">
+              <input class="range" type="range" id="cPct" min="20" max="90" step="5" value="60">
             </div>
           </div>
 
@@ -633,7 +624,7 @@
 
   <div class="toast" id="toast" role="status"></div>
   <script>
-    document.body.appendChild(Object.assign(document.createElement("script"), { src: "script.js?v=7" }));
+    document.body.appendChild(Object.assign(document.createElement("script"), { src: "script.js?v=9" }));
   </script>
 </body>
 </html>
