@@ -14,9 +14,9 @@
       setTimeout(function () { if (!window.__avReady) d.classList.remove("js"); }, 3000);
     })();
   </script>
-  <style>@import url("styles.css?v=13");</style>
+  <style>@import url("styles.css?v=14");</style>
   <script>
-    document.head.appendChild(Object.assign(document.createElement("link"), { rel: "icon", type: "image/png", href: "logo-icon.png?v=13" }));
+    document.head.appendChild(Object.assign(document.createElement("link"), { rel: "icon", type: "image/svg+xml", href: "favicon.svg" }));
   </script>
 </head>
 <body data-page="faq">
@@ -88,7 +88,10 @@
   <footer class="footer">
     <div class="container">
       <div class="f-grid">
-        <button type="button" class="foot-logo" data-href="index.html" aria-label="AutomatioVisio: Work Smarter. Not Harder. Back to home"></button>
+        <div>
+          <p class="f-brand">Automatio<span>Visio</span></p>
+          <p class="f-tag">Work smarter, not harder.</p>
+        </div>
         <div class="f-links">
           <button type="button" data-href="index.html#solutions">Solutions</button>
           <button type="button" data-href="index.html#stocksense">StockSense</button>
@@ -105,7 +108,7 @@
   <button type="button" class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg></button>
   <div class="toast" id="toast" role="status"></div>
   <script>
-    document.body.appendChild(Object.assign(document.createElement("script"), { src: "script.js?v=13" }));
+    document.body.appendChild(Object.assign(document.createElement("script"), { src: "script.js?v=14" }));
   </script>
 </body>
 </html>
