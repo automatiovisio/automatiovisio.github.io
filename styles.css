@@ -152,13 +152,16 @@ h2 { margin-top: 10px; font-size: clamp(1.75rem, 6.6vw, 2.6rem); font-weight: 80
   height: 60px; max-width: 1180px; margin: 0 auto; padding: 0 8px 0 12px;
   border-radius: 18px; background: var(--nav); border: 1px solid var(--line); box-shadow: var(--shadow);
 }
-.brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin-right: auto; }
-.brand-mark { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; background: linear-gradient(135deg, #6366f1, #06b6d4); }
-.brand-mark svg { width: 19px; height: 19px; stroke: #fff; stroke-width: 2.4; }
-.brand-name { font-weight: 700; font-size: 16px; letter-spacing: -0.02em; color: var(--ink); white-space: nowrap; }
-.brand-name span { color: var(--muted); font-weight: 600; }
+
+/* Logo (your image already contains the name, so no extra text) */
+.brand { display: inline-flex; align-items: center; min-height: 44px; min-width: 0; margin-right: auto; }
+.brand-logo {
+  display: block; height: 38px; width: auto;
+  max-width: min(200px, 50vw); object-fit: contain;
+}
+
 .nav-links, .nav-cta { display: none; }
-.nav-actions { display: flex; align-items: center; gap: 8px; }
+.nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
 .menu-btn { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--card); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
 .menu-btn i { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--ink); transition: transform 0.25s, opacity 0.25s; }
@@ -413,6 +416,8 @@ html.light .tt-sun { opacity: 1; transform: none; }
 /* ---------- Footer ---------- */
 .footer { padding: 34px 0 30px; border-top: 1px solid var(--line); }
 .f-grid { display: grid; gap: 18px; }
+.footer .brand { margin-right: 0; }
+.footer .brand-logo { height: 34px; }
 .f-tag { margin-top: 6px; font-size: 13px; color: var(--dim); }
 .f-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
 .f-links button { min-height: 40px; font-size: 14px; color: var(--muted); }
@@ -469,6 +474,7 @@ html.light .tt-sun { opacity: 1; transform: none; }
 @media (min-width: 960px) {
   .nav { gap: 16px; padding: 0 12px 0 18px; }
   .brand { margin-right: 0; }
+  .brand-logo { height: 40px; }
   .nav-links { display: flex; flex: 1; justify-content: center; gap: 26px; }
   .nav-link { position: relative; min-height: 44px; font-size: 14px; font-weight: 500; color: var(--muted); }
   .nav-link:hover, .nav-link.on { color: var(--ink); }
@@ -517,7 +523,7 @@ html.light .tt-sun { opacity: 1; transform: none; }
 }
 
 @media (max-width: 380px) {
-  .brand-name { font-size: 15px; }
+  .brand-logo { height: 34px; max-width: 46vw; }
   .hero-title { font-size: 2.05rem; }
 }
 
