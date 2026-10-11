@@ -151,6 +151,7 @@ function initSite() {
   /* ---------- Card spotlight ---------- */
   $$(".card").forEach((card) => {
     card.addEventListener("pointermove", (e) => {
+      if (e.pointerType !== "mouse") return;
       const r = card.getBoundingClientRect();
       card.style.setProperty("--mx", e.clientX - r.left + "px");
       card.style.setProperty("--my", e.clientY - r.top + "px");
@@ -158,8 +159,10 @@ function initSite() {
   });
 
   /* ---------- Hero network canvas ---------- */
+  // The animated background is skipped on phones/tablets to keep them fast.
+  const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
   const canvas = $("#network");
-  if (canvas && canvas.getContext && !reduceMotion) {
+  if (canvas && canvas.getContext && !reduceMotion && !isTouch) {
     const ctx = canvas.getContext("2d");
     const hero = $("#hero");
     let w, h, dpr, points = [], running = true;
@@ -314,16 +317,29 @@ function initSite() {
     ssBar.style.width = Math.round((done / qVals.length) * 100) + "%";
     ssText.textContent = done + " of " + qVals.length + " items counted";
   }
-  $$(".q-btn").forEach((btn) =>
-    btn.addEventListener("click", () => {
-      const q = qVals[Number(btn.dataset.i)];
-      q.textContent = Math.max(0, Math.min(999, Number(q.textContent) + Number(btn.dataset.d)));
-      q.classList.remove("bump");
-      void q.offsetWidth;
-      q.classList.add("bump");
-      updateStock();
-    })
-  );
+  // Touch-safe counter: reacts the instant a finger touches the button,
+  // so fast taps are never lost. Mouse and keyboard still use "click".
+  function stepQty(btn) {
+    const q = qVals[Number(btn.dataset.i)];
+    q.textContent = Math.max(0, Math.min(999, Number(q.textContent) + Number(btn.dataset.d)));
+    q.classList.remove("bump");
+    void q.offsetWidth;
+    q.classList.add("bump");
+    updateStock();
+  }
+  let lastTouch = 0;
+  $$(".q-btn").forEach((btn) => {
+    btn.addEventListener("pointerdown", (e) => {
+      if (e.pointerType === "mouse") return;
+      e.preventDefault();
+      lastTouch = Date.now();
+      stepQty(btn);
+    });
+    btn.addEventListener("click", (e) => {
+      if (Date.now() - lastTouch < 700) { e.preventDefault(); return; }
+      stepQty(btn);
+    });
+  });
   photoBtn.addEventListener("click", () => {
     photoAttached = !photoAttached;
     photoBtn.classList.toggle("done", photoAttached);
@@ -392,7 +408,16 @@ function initSite() {
 
     [cPeople, cHours, cRate, cPct].forEach(paintRange);
   }
-  [cPeople, cHours, cRate, cPct].forEach((el) => el.addEventListener("input", calc));
+  // Update at most once per screen frame so dragging stays smooth on phones.
+  let calcFrame = 0;
+  const queueCalc = () => {
+    if (calcFrame) return;
+    calcFrame = requestAnimationFrame(() => { calcFrame = 0; calc(); });
+  };
+  [cPeople, cHours, cRate, cPct].forEach((el) => {
+    el.addEventListener("input", queueCalc);
+    el.addEventListener("change", calc);
+  });
   calc();
 
   /* ---------- Contact form ---------- */
@@ -447,7 +472,7 @@ if (document.readyState === "loading") {
   initSite();
 }
 /* =========================================================
-   DAY / NIGHT MODE  (paste at the very bottom of script.js)
+   DAY / NIGHT MODE
    ========================================================= */
 (function () {
   function setupTheme() {
