@@ -27,6 +27,7 @@
   --c-green: #6ee7b7;
   --c-amber: #fcd34d;
   --c-red: #fca5a5;
+  --gold: #c9a45e;
   --grad: linear-gradient(120deg, #a5b4fc 0%, #818cf8 30%, #22d3ee 75%, #67e8f9 100%);
   --grad-btn: linear-gradient(135deg, #6366f1 0%, #4f46e5 55%, #0891b2 100%);
   --nav: rgba(12, 16, 25, 0.96);
@@ -59,6 +60,7 @@ html.light {
   --c-green: #047857;
   --c-amber: #b45309;
   --c-red: #b91c1c;
+  --gold: #9a6f2a;
   --grad: linear-gradient(120deg, #4f46e5 0%, #6366f1 30%, #0891b2 75%, #06b6d4 100%);
   --nav: rgba(255, 255, 255, 0.96);
   --card-shadow: 0 12px 32px -22px rgba(30, 41, 99, 0.4);
@@ -149,16 +151,20 @@ h2 { margin-top: 10px; font-size: clamp(1.75rem, 6.6vw, 2.6rem); font-weight: 80
 .header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 10px 10px 0; pointer-events: none; }
 .nav {
   pointer-events: auto; display: flex; align-items: center; gap: 8px;
-  height: 60px; max-width: 1180px; margin: 0 auto; padding: 0 8px 0 12px;
+  height: 60px; max-width: 1180px; margin: 0 auto; padding: 0 8px 0 9px;
   border-radius: 18px; background: var(--nav); border: 1px solid var(--line); box-shadow: var(--shadow);
 }
 
-/* Logo (your image already contains the name, so no extra text) */
-.brand { display: inline-flex; align-items: center; min-height: 44px; min-width: 0; margin-right: auto; }
-.brand-logo {
-  display: block; height: 38px; width: auto;
-  max-width: min(200px, 50vw); object-fit: contain;
+/* ---------- Brand: AV mark (white badge) + live wordmark ---------- */
+.brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; min-width: 0; margin-right: auto; }
+.brand-mark {
+  display: block; width: 42px; height: 42px; flex-shrink: 0; border-radius: 12px;
+  background: #fff url("logo-icon.png?v=13") center / cover no-repeat;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14), 0 8px 18px -10px rgba(0, 0, 0, 0.7);
 }
+html.light .brand-mark { box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.14), 0 8px 18px -10px rgba(30, 41, 99, 0.35); }
+.brand-name { font-weight: 700; font-size: 16px; letter-spacing: -0.02em; color: var(--ink); white-space: nowrap; }
+.brand-name span { color: var(--gold); }
 
 .nav-links, .nav-cta { display: none; }
 .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
@@ -194,12 +200,21 @@ html.light .tt-sun { opacity: 1; transform: none; }
 
 /* ---------- Hero ---------- */
 .hero {
-  position: relative; padding: 104px 0 44px;
+  position: relative; padding: 100px 0 44px;
   background: radial-gradient(460px 320px at 0 0, var(--hero-a), transparent 70%), radial-gradient(420px 300px at 100% 10%, var(--hero-b), transparent 70%);
 }
 .hero-canvas { display: none; }
 .hero-grid { position: relative; display: grid; gap: 30px; }
-.hero-title { font-size: clamp(2.2rem, 9.4vw, 3.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.035em; }
+
+/* Full logo card (white card so the green + gold logo looks right in night AND day mode) */
+.hero-logo {
+  display: block; width: min(200px, 60%); aspect-ratio: 900 / 656; margin-bottom: 22px; border-radius: 18px;
+  background: #fff url("logo-full.png?v=13") center / contain no-repeat;
+  box-shadow: 0 0 0 1px var(--line-2), var(--card-shadow);
+}
+html:not(.light) .hero-logo { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14), 0 16px 36px -20px rgba(0, 0, 0, 0.8); }
+
+.hero-title { font-size: clamp(1.75rem, 8vw, 3.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.035em; }
 .lead { margin-top: 16px; max-width: 34rem; font-size: 17px; line-height: 1.65; color: var(--muted); }
 .cta-row { margin-top: 24px; display: grid; gap: 10px; }
 
@@ -415,10 +430,13 @@ html.light .tt-sun { opacity: 1; transform: none; }
 
 /* ---------- Footer ---------- */
 .footer { padding: 34px 0 30px; border-top: 1px solid var(--line); }
-.f-grid { display: grid; gap: 18px; }
-.footer .brand { margin-right: 0; }
-.footer .brand-logo { height: 34px; }
-.f-tag { margin-top: 6px; font-size: 13px; color: var(--dim); }
+.f-grid { display: grid; gap: 22px; }
+.foot-logo {
+  display: block; width: 190px; aspect-ratio: 900 / 656; border-radius: 16px;
+  background: #fff url("logo-full.png?v=13") center / contain no-repeat;
+  box-shadow: 0 0 0 1px var(--line-2), var(--card-shadow);
+}
+html:not(.light) .foot-logo { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14); }
 .f-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
 .f-links button { min-height: 40px; font-size: 14px; color: var(--muted); }
 .f-bottom { margin-top: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--dim); }
@@ -455,6 +473,7 @@ html.light .tt-sun { opacity: 1; transform: none; }
   .sec-head { margin-bottom: 40px; }
   .hero { padding: 140px 0 80px; }
   .hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 48px; align-items: center; }
+  .hero-logo { width: 240px; margin-bottom: 26px; }
   .hero-title { font-size: clamp(2.4rem, 4.4vw, 3.5rem); }
   .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .spot { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 48px; align-items: center; padding: 48px; }
@@ -468,13 +487,14 @@ html.light .tt-sun { opacity: 1; transform: none; }
   .step { flex-direction: column; }
   .why { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .page-hero { padding: 140px 0 12px; }
-  .f-grid { grid-template-columns: 1fr auto; align-items: center; }
+  .f-grid { grid-template-columns: auto 1fr; align-items: center; gap: 40px; }
+  .f-links { justify-content: flex-end; }
 }
 
 @media (min-width: 960px) {
-  .nav { gap: 16px; padding: 0 12px 0 18px; }
+  .nav { gap: 16px; padding: 0 12px 0 10px; }
   .brand { margin-right: 0; }
-  .brand-logo { height: 40px; }
+  .brand-mark { width: 44px; height: 44px; }
   .nav-links { display: flex; flex: 1; justify-content: center; gap: 26px; }
   .nav-link { position: relative; min-height: 44px; font-size: 14px; font-weight: 500; color: var(--muted); }
   .nav-link:hover, .nav-link.on { color: var(--ink); }
@@ -523,8 +543,8 @@ html.light .tt-sun { opacity: 1; transform: none; }
 }
 
 @media (max-width: 380px) {
-  .brand-logo { height: 34px; max-width: 46vw; }
-  .hero-title { font-size: 2.05rem; }
+  .brand-mark { width: 38px; height: 38px; }
+  .brand-name { font-size: 15px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
