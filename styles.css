@@ -1108,3 +1108,39 @@ html.light .contact-steps span { color: #fff; background: linear-gradient(135deg
   .calc, .contact, .spotlight, .ai-wrap { width: 100%; }
 }
 .spotlight, .contact, .calc, .card, .console { overflow: clip; }
+
+/* =========================================================
+   TOUCH DEVICES — reliable controls, light rendering
+   ========================================================= */
+/* Taller slider track = bigger finger target; the visible line stays thin */
+.range {
+  height: 34px; cursor: pointer; touch-action: pan-y;
+  background-size: 100% 6px; background-position: center; background-repeat: no-repeat;
+}
+.q-btn { touch-action: none; }
+
+@media (hover: none), (pointer: coarse) {
+  /* Bigger, easier controls */
+  .range::-webkit-slider-thumb { width: 28px; height: 28px; }
+  .range::-moz-range-thumb { width: 22px; height: 22px; }
+  .q-btn { width: 40px; height: 40px; font-size: 19px; transition: none; }
+  .q-btn:hover { background: rgba(255, 255, 255, 0.1); }
+  .q-btn.plus:hover { background: var(--indigo); }
+
+  /* Remove the heavy GPU effects that make phones lag */
+  .glass, .btn-glass, .to-top { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .glass, .mobile-menu.glass { background: rgba(11, 15, 23, 0.97); }
+  html.light .glass, html.light .mobile-menu.glass { background: rgba(255, 255, 255, 0.97); }
+  .hero-canvas, .spot-glow, .contact-glow, .bg-grid { display: none; }
+  .hero-visual::before { filter: none; opacity: 0.3; }
+  .phone, .console, .calc, .spotlight, .contact, .compare-col.good { box-shadow: none; }
+  html.light .phone, html.light .console, html.light .calc,
+  html.light .spotlight, html.light .contact { box-shadow: 0 10px 30px -18px rgba(30, 41, 99, 0.35); }
+  .flow-dot, .pulse-dot::after { animation: none; }
+
+  /* No stuck hover effects after a tap */
+  .card:hover, .uc:hover, .btn-primary:hover, .btn-glass:hover { transform: none; }
+  .card:hover::before { opacity: 0; }
+  .js .reveal { transition-duration: 0.45s; transform: translateY(14px); }
+  .js .reveal.in { transform: none; }
+}
