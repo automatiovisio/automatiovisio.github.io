@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AutomatioVisio | Custom Automation, Enterprise Apps &amp; Operational Tools</title>
-  <meta name="description" content="AutomatioVisio builds custom business process automation, enterprise web apps and operational tools that remove manual admin, speed up approvals and give you live visibility.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AutomatioVisio | Custom Automation, Business Apps &amp; Operational Tools</title>
+  <meta name="description" content="AutomatioVisio builds custom automation, business apps and mobile tools that remove manual admin, speed up approvals and give you live visibility.">
   <meta name="theme-color" content="#07090E">
   <script>
     (function () {
@@ -14,61 +14,47 @@
       setTimeout(function () { if (!window.__avReady) d.classList.remove("js"); }, 3000);
     })();
   </script>
-  <meta property="og:title" content="AutomatioVisio | Work smarter, not harder.">
-  <meta property="og:description" content="Custom automation and enterprise software built around how your business actually runs.">
-  <meta property="og:type" content="website">
-  <style>@import url("styles.css?v=10");</style>
+  <style>@import url("styles.css?v=11");</style>
   <script>
     document.head.appendChild(Object.assign(document.createElement("link"), { rel: "icon", type: "image/svg+xml", href: "favicon.svg" }));
   </script>
 </head>
-<body>
-
-  <div class="scroll-progress" id="scrollProgress"></div>
-  <div class="bg-glow" aria-hidden="true"></div>
-  <div class="bg-grid" aria-hidden="true"></div>
-
+<body data-page="home">
   <!-- ================= NAVIGATION ================= -->
   <header class="header" id="header">
-    <nav class="nav glass" aria-label="Main navigation">
-      <button type="button" class="brand" data-go="top" aria-label="AutomatioVisio home">
-        <span class="brand-mark">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7l7 11 7-11"/><circle cx="12" cy="6.5" r="1.6" fill="#fff" stroke="none"/></svg>
-        </span>
+    <nav class="nav" aria-label="Main navigation">
+      <button type="button" class="brand" data-href="#top" aria-label="AutomatioVisio home">
+        <span class="brand-mark"><svg viewBox="0 0 24 24"><path d="M5 7l7 11 7-11"/><circle cx="12" cy="6.5" r="1.6" fill="#fff" stroke="none"/></svg></span>
         <span class="brand-name">Automatio<span>Visio</span></span>
       </button>
 
       <div class="nav-links">
-        <button type="button" class="nav-link" data-go="solutions">Solutions</button>
-        <button type="button" class="nav-link" data-go="stocksense">StockSense</button>
-        <button type="button" class="nav-link" data-go="why-us">Why Us</button>
-        <button type="button" class="nav-link" data-go="contact">Contact</button>
+        <button type="button" class="nav-link" data-href="#solutions">Solutions</button>
+        <button type="button" class="nav-link" data-href="#stocksense">StockSense</button>
+        <button type="button" class="nav-link" data-nav="calculator" data-href="calculator.html">Calculator</button>
+        <button type="button" class="nav-link" data-nav="about" data-href="about.html">How we work</button>
+        <button type="button" class="nav-link" data-nav="faq" data-href="faq.html">FAQ</button>
       </div>
 
       <div class="nav-actions">
-          <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to day mode" title="Day / night mode">
-            <span class="tt-track">
-              <span class="tt-icon tt-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
-              <span class="tt-icon tt-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span>
-              <span class="tt-knob"></span>
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary btn-sm nav-cta" data-go="contact">
-            Get Started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
-          <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </nav>
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to day mode" title="Day / night mode">
+          <span class="tt-track">
+            <span class="tt-moon"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span><span class="tt-sun"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span>
+            <span class="tt-knob"></span>
+          </span>
+        </button>
+        <button type="button" class="btn btn-primary sm nav-cta" data-href="#contact">Get Started <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><i></i><i></i><i></i></button>
+      </div>
+    </nav>
 
-    <div class="mobile-menu glass" id="mobileMenu">
-      <button type="button" class="m-link" data-go="solutions">Solutions <span>01</span></button>
-      <button type="button" class="m-link" data-go="stocksense">StockSense <span>02</span></button>
-      <button type="button" class="m-link" data-go="why-us">Why Us <span>03</span></button>
-      <button type="button" class="m-link" data-go="contact">Contact <span>04</span></button>
-      <button type="button" class="btn btn-primary m-cta" data-go="contact">Get Started</button>
+    <div class="menu" id="mobileMenu">
+      <button type="button" class="m-link" data-href="#solutions">Solutions <span>01</span></button>
+      <button type="button" class="m-link" data-href="#stocksense">StockSense <span>02</span></button>
+      <button type="button" class="m-link" data-href="calculator.html">Savings calculator <span>03</span></button>
+      <button type="button" class="m-link" data-href="about.html">How we work <span>04</span></button>
+      <button type="button" class="m-link" data-href="faq.html">FAQ <span>05</span></button>
+      <button type="button" class="btn btn-primary" data-href="#contact">Get Started</button>
     </div>
   </header>
 
@@ -77,301 +63,139 @@
     <!-- ================= HERO ================= -->
     <section class="hero" id="hero">
       <canvas id="network" class="hero-canvas" aria-hidden="true"></canvas>
-
       <div class="container hero-grid">
         <div class="hero-copy">
-          <div class="badge reveal"><span class="pulse-dot"></span>⚡ Work smarter, not harder.</div>
-
-          <h1 class="hero-title reveal">
-            Stop doing work<br>
-            <span class="grad">software should do.</span>
-          </h1>
-
-          <p class="lead reveal">
-            We design and build custom automation, enterprise web apps and operational tools around the way your business actually runs.
-            Fewer forms. Fewer follow-ups. Faster decisions.
-          </p>
-
-          <div class="cta-row reveal">
-            <button type="button" class="btn btn-primary btn-lg" data-go="solutions">
-              Explore Solutions
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </button>
-            <button type="button" class="btn btn-glass btn-lg" data-go="contact">Talk to Us</button>
+          <h1 class="hero-title">Stop doing work<br><span class="grad">software should do.</span></h1>
+          <p class="lead">Custom automation, business apps and mobile tools built around how your team really works. Fewer forms. Fewer follow-ups. Faster decisions.</p>
+          <div class="cta-row">
+            <button type="button" class="btn btn-primary" data-href="#solutions">Explore solutions <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <button type="button" class="btn btn-ghost" data-href="#contact">Talk to us</button>
           </div>
-
-          <ul class="hero-points reveal">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Built around your process</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Runs on tools you already use</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Plain English, zero jargon</li>
-          </ul>
         </div>
 
-        <!-- Live automation console -->
-        <div class="hero-visual reveal">
-          <div class="console">
-            <div class="console-bar">
-              <div class="dots"><span></span><span></span><span></span></div>
-              <span class="mono">automation.live</span>
-              <span class="live"><span></span>LIVE</span>
-            </div>
-
-            <div class="console-body">
-              <div class="console-head">
-                <div>
-                  <p class="mono-label">Now processing</p>
-                  <p class="console-title"><span id="reqId">PR-2048</span> · <span id="reqType">Purchase request</span></p>
-                </div>
-                <span class="chip chip-cyan" id="reqStatus">Running</span>
+        <div class="console dk reveal" id="console">
+          <div class="c-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <span class="mono-label">automation.live</span>
+            <span class="live"><i></i>LIVE</span>
+          </div>
+          <div class="c-body">
+            <div class="c-head">
+              <div>
+                <p class="mono-label">Now processing</p>
+                <p class="c-title"><span id="reqId">PR-2048</span> · <span id="reqType">Purchase request</span></p>
               </div>
-
-              <ol class="pipeline" id="pipeline">
-                <li class="stage"><span class="stage-dot">1</span><span class="stage-name">Submitted</span></li>
-                <li class="stage"><span class="stage-dot">2</span><span class="stage-name">Validated</span></li>
-                <li class="stage"><span class="stage-dot">3</span><span class="stage-name">Approved</span></li>
-                <li class="stage"><span class="stage-dot">4</span><span class="stage-name">Synced</span></li>
-                <li class="stage"><span class="stage-dot">5</span><span class="stage-name">Notified</span></li>
-              </ol>
-              <div class="pipe-track"><span id="pipeBar"></span></div>
-
-              <div class="log" id="log" aria-live="polite"></div>
+              <span class="chip chip-cyan" id="reqStatus">Running</span>
             </div>
-
-            <div class="console-foot">
-              <div><p class="stat">0</p><p class="mono-label">Manual hand-offs</p></div>
-              <div><p class="stat" id="runCount">1,284</p><p class="mono-label">Runs this month</p></div>
-              <div><p class="stat stat-green">100%</p><p class="mono-label">Audit trail</p></div>
-            </div>
+            <ol class="pipeline" id="pipeline">
+              <li class="stage"><span class="stage-dot">1</span><span class="stage-name">Submitted</span></li>
+              <li class="stage"><span class="stage-dot">2</span><span class="stage-name">Validated</span></li>
+              <li class="stage"><span class="stage-dot">3</span><span class="stage-name">Approved</span></li>
+              <li class="stage"><span class="stage-dot">4</span><span class="stage-name">Synced</span></li>
+              <li class="stage"><span class="stage-dot">5</span><span class="stage-name">Notified</span></li>
+            </ol>
+            <div class="pipe-track"><i class="pipe-fill" id="pipeFill"></i></div>
+            <div class="log" id="log"></div>
           </div>
-        </div>
-      </div>
-
-      <div class="container stack reveal">
-        <p class="mono-label">Built on platforms your business already trusts</p>
-        <div class="stack-list">
-          <span>Microsoft 365</span><span>SharePoint</span><span>Power Automate</span><span>Microsoft Teams</span><span>Outlook</span><span>Web &amp; Mobile</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= PROBLEM VS SOLUTION ================= -->
-    <section class="section" id="problem">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">The problem</p>
-          <h2>Your team is busy.<br><span class="soft">But not productive.</span></h2>
-          <p class="section-sub">Most delays are not caused by people. They are caused by paper, inboxes and spreadsheets that do not talk to each other.</p>
-        </div>
-
-        <div class="compare">
-          <div class="compare-col bad reveal">
-            <div class="compare-head"><span class="chip chip-red">Today</span><h3>The manual way</h3></div>
-            <ul class="compare-list">
-              <li><span class="mark">×</span>Print, sign, scan and email forms</li>
-              <li><span class="mark">×</span>Approvals sit unread in inboxes</li>
-              <li><span class="mark">×</span>Chasing updates on calls and chats</li>
-              <li><span class="mark">×</span>Same data re-typed into spreadsheets</li>
-              <li><span class="mark">×</span>Reports built by hand, already outdated</li>
-            </ul>
-            <div class="compare-foot"><span>Hand-offs per request</span><strong>5+</strong></div>
-          </div>
-
-          <div class="compare-mid" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </div>
-
-          <div class="compare-col good reveal">
-            <div class="compare-head"><span class="chip chip-green">With AutomatioVisio</span><h3>The automated way</h3></div>
-            <ul class="compare-list">
-              <li><span class="mark">✓</span>Submit once, from any device</li>
-              <li><span class="mark">✓</span>Routed to the right approver automatically</li>
-              <li><span class="mark">✓</span>Live status. Nobody needs to chase</li>
-              <li><span class="mark">✓</span>Records update themselves</li>
-              <li><span class="mark">✓</span>Reports and alerts arrive on schedule</li>
-            </ul>
-            <div class="compare-foot"><span>Hand-offs per request</span><strong>1</strong></div>
+          <div class="c-foot">
+            <div><p class="stat">0</p><p class="mono-label">Manual hand-offs</p></div>
+            <div><p class="stat" id="runCount">1,284</p><p class="mono-label">Runs this month</p></div>
+            <div><p class="stat g">100%</p><p class="mono-label">Audit trail</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= SOLUTIONS BENTO ================= -->
+    <!-- ================= WHAT WE DO ================= -->
     <section class="section" id="solutions">
       <div class="container">
-        <div class="section-head split reveal">
-          <div>
-            <p class="eyebrow">What we do</p>
-            <h2>Three ways we take<br><span class="grad">work off your plate.</span></h2>
-          </div>
-          <p class="section-sub">Every solution is designed for your business. Nothing is bought off the shelf and forced to fit.</p>
+        <div class="sec-head reveal">
+          <p class="eyebrow">What we do</p>
+          <h2>Three ways we take work off your plate.</h2>
+          <p class="sub">Every solution is designed around your business. Nothing is bought off the shelf and forced to fit.</p>
         </div>
 
-        <div class="bento">
-          <!-- 01 Automation -->
-          <article class="card bento-a reveal">
-            <span class="tag tag-indigo">01 · Automation</span>
+        <div class="cards">
+          <article class="card reveal">
+            <span class="tag t-indigo">01 · Automation</span>
             <h3>Business Process Automation</h3>
-            <p>End-to-end workflows that handle repetitive admin for you: document processing, multi-level approval chains, notifications and data sync between systems.</p>
-
+            <p>Approvals, documents, reminders and data sync that run by themselves.</p>
             <div class="flow">
-              <div class="flow-node"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m0 0L7 8m5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></span><p>Submit</p></div>
-              <div class="flow-node n2"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 14l2 2 4-4"/></svg></span><p>Check</p></div>
-              <div class="flow-node n3"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></span><p>Approve</p></div>
-              <div class="flow-node n4"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M20 10a8 8 0 0 0-14.3-4M4 14a8 8 0 0 0 14.3 4"/></svg></span><p>Sync</p></div>
-              <div class="flow-node n5"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span><p>Notify</p></div>
-              <div class="flow-line"><span class="flow-dot"></span></div>
+              <div class="f-node"><span><svg viewBox="0 0 24 24"><path d="M12 15V3m0 0L7 8m5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></span><p>Submit</p></div>
+              <div class="f-node"><span><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 14l2 2 4-4"/></svg></span><p>Check</p></div>
+              <div class="f-node"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></span><p>Approve</p></div>
+              <div class="f-node n4"><span><svg viewBox="0 0 24 24"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M20 10a8 8 0 0 0-14.3-4M4 14a8 8 0 0 0 14.3 4"/></svg></span><p>Sync</p></div>
+              <div class="f-node n5"><span><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span><p>Notify</p></div>
             </div>
-
-            <div class="feed">
-              <div class="feed-row"><span class="feed-dot d-green"></span><p>Invoice INV-884 matched and filed</p><em>auto</em></div>
-              <div class="feed-row"><span class="feed-dot d-amber"></span><p>Reminder sent to checker after 24h</p><em>auto</em></div>
-              <div class="feed-row"><span class="feed-dot d-cyan"></span><p>Weekly summary emailed to management</p><em>auto</em></div>
-            </div>
-
-            <div class="pills">
-              <span>Maker / checker approvals</span><span>Return for rework</span><span>Branded email alerts</span><span>Full audit trail</span><span>Scheduled reminders</span>
-            </div>
+            <div class="pills"><span>Approvals</span><span>Reminders</span><span>Audit trail</span></div>
           </article>
 
-          <!-- 02 Web apps -->
-          <article class="card bento-b reveal">
-            <span class="tag tag-cyan">02 · Web Apps</span>
-            <h3>Bespoke Enterprise Web Apps</h3>
-            <p>Secure cloud software shaped around your rules, roles and data. It works the way your business already runs.</p>
+          <article class="card reveal">
+            <span class="tag t-cyan">02 · Web Apps</span>
+            <h3>Custom Business Apps</h3>
+            <p>Secure web apps shaped around your rules, roles and data.</p>
             <div class="mini-table">
               <div><span>REQ-1042</span><em class="s-green">Approved</em></div>
               <div><span>REQ-1043</span><em class="s-amber">With checker</em></div>
               <div><span>REQ-1044</span><em class="s-indigo">Submitted</em></div>
             </div>
+            <div class="pills"><span>Roles</span><span>Dashboards</span><span>Reports</span></div>
           </article>
 
-          <!-- 03 Ops tools -->
-          <article class="card bento-c reveal">
-            <span class="tag tag-green">03 · Ops Tools</span>
+          <article class="card reveal">
+            <span class="tag t-green">03 · Ops Tools</span>
             <h3>Smart Operational Tools</h3>
-            <p>Fast, focused, mobile-first apps for stores, warehouses and field teams. Open it, use it, done.</p>
+            <p>Fast mobile apps for stores, warehouses and field teams.</p>
             <div class="mini-row">
-              <span class="mini-icon mi-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18h2"/></svg></span>
-              <div><p class="mini-title">Works on any phone</p><p class="mini-sub">No installs. No training manuals.</p></div>
+              <span class="mini-icon"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18h2"/></svg></span>
+              <div><p class="mini-title">Works on any phone</p><p class="mini-sub">No installs. No manuals.</p></div>
             </div>
-          </article>
-
-          <!-- Extras -->
-          <article class="card bento-d reveal">
-            <div class="mini-row top">
-              <span class="mini-icon mi-indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span>
-              <div><p class="mini-title">Live dashboards &amp; reports</p><p class="mini-sub">See every request, count and approval in real time instead of waiting for month end.</p></div>
-            </div>
-          </article>
-          <article class="card bento-e reveal">
-            <div class="mini-row top">
-              <span class="mini-icon mi-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>
-              <div><p class="mini-title">Smart notifications</p><p class="mini-sub">The right person gets the right alert at the right time, with a reminder if they forget.</p></div>
-            </div>
+            <div class="pills"><span>Photo proof</span><span>Checklists</span><span>Live status</span></div>
           </article>
         </div>
-      </div>
-    </section>
-
-    <!-- ================= HOW IT WORKS ================= -->
-    <section class="section" id="process">
-      <div class="container">
-        <div class="section-head center reveal">
-          <p class="eyebrow">How it works</p>
-          <h2>From messy process<br><span class="soft">to working system.</span></h2>
-        </div>
-
-        <div class="steps">
-          <div class="steps-line"><span id="stepsFill"></span></div>
-          <div class="step-card reveal">
-            <span class="step-num">01</span>
-            <h3>Discover</h3>
-            <p>We sit with your team and map how the work really happens today, including every workaround.</p>
-          </div>
-          <div class="step-card reveal">
-            <span class="step-num">02</span>
-            <h3>Design</h3>
-            <p>You see the screens, steps and approval rules before anything is built. No surprises.</p>
-          </div>
-          <div class="step-card reveal">
-            <span class="step-num">03</span>
-            <h3>Build</h3>
-            <p>We deliver in stages so your team can test early and shape the final product.</p>
-          </div>
-          <div class="step-card reveal">
-            <span class="step-num">04</span>
-            <h3>Launch &amp; support</h3>
-            <p>We go live with your team, fix what comes up and keep improving as you grow.</p>
-          </div>
-        </div>
+        <p class="stack">Built on Microsoft 365 · SharePoint · Power Automate · Teams · Outlook</p>
       </div>
     </section>
 
     <!-- ================= STOCKSENSE ================= -->
     <section class="section" id="stocksense">
       <div class="container">
-        <div class="spotlight reveal">
-          <div class="spot-glow g1"></div>
-          <div class="spot-glow g2"></div>
+        <div class="spot reveal">
+          <div class="spot-copy">
+            <span class="tag t-cyan">Featured product</span>
+            <h2>StockSense</h2>
+            <p class="tagline">Stock counts without the clipboard.</p>
+            <p class="spot-text">Store teams count on their phone, attach a photo as proof and submit. Management sees the result straight away.</p>
+            <ul class="features">
+              <li><span class="fi i"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><div><b>Fast</b><span>Tap to count. Minimal typing.</span></div></li>
+              <li><span class="fi c"><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h2l2-2.5h6L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg></span><div><b>Photo proof</b><span>Camera capture for every count.</span></div></li>
+              <li><span class="fi g"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><div><b>Zero friction</b><span>Simple enough for day one.</span></div></li>
+            </ul>
+            <button type="button" class="btn btn-primary" data-prefill="An operational tool (like StockSense)" data-message="We would like a demo of StockSense for our stock counts.">Request a demo <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
 
-          <div class="spot-grid">
-            <div class="spot-copy">
-              <span class="tag tag-cyan">Featured build</span>
-              <h2 class="spot-title">StockSense</h2>
-              <p class="spot-tagline">Stock counts without the clipboard.</p>
-              <p class="spot-text">We built StockSense to replace paper-based stock counts. Store teams count on their phone, attach a photo as proof and submit. Management sees the result straight away. No paper, no re-typing, no waiting.</p>
-
-              <ul class="feature-list">
-                <li><span class="fi fi-indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><div><p>Fast</p><span>Tap to count. Minimal typing, minimal steps.</span></div></li>
-                <li><span class="fi fi-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h2l2-2.5h6L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg></span><div><p>Photo proof</p><span>Built-in camera capture for every count.</span></div></li>
-                <li><span class="fi fi-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><div><p>Zero friction</p><span>Simple enough for any store team on day one.</span></div></li>
-              </ul>
-
-              <div class="built-with">
-                <p class="mono-label">Under the hood</p>
-                <div class="pills"><span>Mobile web app</span><span>SharePoint</span><span>Power Automate</span><span>Camera capture</span></div>
-              </div>
-            </div>
-
-            <div class="phone-wrap">
-              <div class="phone">
-                <div class="notch"></div>
-                <div class="screen">
-                  <div class="app-head">
-                    <div><p class="mono-label">Stock count</p><p class="app-title">Main Store · Dry Goods</p></div>
-                    <span class="chip chip-green">Live</span>
-                  </div>
-
-                  <div class="app-progress"><span id="ssBar"></span></div>
-                  <p class="app-progress-text" id="ssText">2 of 3 items counted</p>
-
-                  <div class="items">
-                    <div class="item">
-                      <div><p class="item-name">Coffee Beans</p><p class="item-unit">1kg pack</p></div>
-                      <div class="qty"><button type="button" class="q-btn" data-i="0" data-d="-1" aria-label="Decrease">−</button><span class="q-val">12</span><button type="button" class="q-btn plus" data-i="0" data-d="1" aria-label="Increase">+</button></div>
-                    </div>
-                    <div class="item">
-                      <div><p class="item-name">Fresh Milk</p><p class="item-unit">2L bottle</p></div>
-                      <div class="qty"><button type="button" class="q-btn" data-i="1" data-d="-1" aria-label="Decrease">−</button><span class="q-val">8</span><button type="button" class="q-btn plus" data-i="1" data-d="1" aria-label="Increase">+</button></div>
-                    </div>
-                    <div class="item active">
-                      <div><p class="item-name">Paper Cups</p><p class="item-unit cyan">Counting now</p></div>
-                      <div class="qty"><button type="button" class="q-btn" data-i="2" data-d="-1" aria-label="Decrease">−</button><span class="q-val">0</span><button type="button" class="q-btn plus" data-i="2" data-d="1" aria-label="Increase">+</button></div>
-                    </div>
-                  </div>
-
-                  <button type="button" class="photo" id="photoBtn">
-                    <span class="photo-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h2l2-2.5h6L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span id="photoText">Tap to attach photo proof</span><em id="photoTick"></em>
-                  </button>
-
-                  <button type="button" class="btn btn-primary submit" id="ssSubmit">Submit Count</button>
+          <div class="phone-wrap">
+            <div class="phone">
+              <div class="notch"></div>
+              <div class="screen dk" id="stock">
+                <div class="app-head">
+                  <div><p class="mono-label">Stock count</p><p class="app-title">Main Store · Dry Goods</p></div>
+                  <span class="chip chip-green">Live</span>
                 </div>
-              </div>
-              <div class="try-hint">
-                <p class="mono-label">Try it</p>
-                <p>Tap + and − to count</p>
+                <div class="app-progress"><i id="ssBar"></i></div>
+                <p class="app-progress-text" id="ssText">2 of 3 items counted</p>
+                <div class="items">
+                  <div class="item"><div><p class="item-name">Coffee Beans</p><p class="item-unit">1kg pack</p></div><div class="stepper" data-value="12" data-min="0" data-max="999" data-step="1"><button type="button" class="st-btn minus" data-dir="-1" aria-label="Decrease Coffee Beans">−</button><output class="st-val">12</output><button type="button" class="st-btn plus" data-dir="1" aria-label="Increase Coffee Beans">+</button></div></div>
+                  <div class="item"><div><p class="item-name">Fresh Milk</p><p class="item-unit">2L bottle</p></div><div class="stepper" data-value="8" data-min="0" data-max="999" data-step="1"><button type="button" class="st-btn minus" data-dir="-1" aria-label="Decrease Fresh Milk">−</button><output class="st-val">8</output><button type="button" class="st-btn plus" data-dir="1" aria-label="Increase Fresh Milk">+</button></div></div>
+                  <div class="item active"><div><p class="item-name">Paper Cups</p><p class="item-unit c">Counting now</p></div><div class="stepper" data-value="0" data-min="0" data-max="999" data-step="1"><button type="button" class="st-btn minus" data-dir="-1" aria-label="Decrease Paper Cups">−</button><output class="st-val">0</output><button type="button" class="st-btn plus" data-dir="1" aria-label="Increase Paper Cups">+</button></div></div>
+                </div>
+                <button type="button" class="photo" id="photoBtn">
+                  <span class="photo-ic"><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h2l2-2.5h6L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span id="photoText">Tap to attach photo proof</span><em id="photoTick"></em>
+                </button>
+                <button type="button" class="btn btn-primary submit" id="ssSubmit">Submit Count</button>
               </div>
             </div>
+            <p class="try-hint"><span class="mono-label">Try it</span> Tap + and − to count</p>
           </div>
         </div>
       </div>
@@ -380,153 +204,48 @@
     <!-- ================= USE CASES ================= -->
     <section class="section" id="use-cases">
       <div class="container">
-        <div class="section-head center reveal">
+        <div class="sec-head reveal">
           <p class="eyebrow">Where it helps</p>
-          <h2>Real processes we automate,<br><span class="soft">department by department.</span></h2>
+          <h2>Real processes, team by team.</h2>
         </div>
 
-        <div class="tabs reveal" role="tablist" aria-label="Departments">
+        <div class="tabs reveal" role="tablist" aria-label="Teams">
           <button type="button" class="tab on" role="tab" aria-selected="true" data-tab="0">Finance</button>
           <button type="button" class="tab" role="tab" aria-selected="false" data-tab="1">Operations</button>
-          <button type="button" class="tab" role="tab" aria-selected="false" data-tab="2">HR &amp; Admin</button>
-          <button type="button" class="tab" role="tab" aria-selected="false" data-tab="3">Customer &amp; Quality</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-tab="2">People</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-tab="3">Customers</button>
         </div>
 
-        <div class="tab-panels reveal">
-          <div class="tab-panel on" role="tabpanel" data-panel="0">
-            <div class="uc"><h4>Purchase &amp; Asset Approvals</h4><p>Request, check and approve purchases and company assets with automatic reference numbers and a full history.</p></div>
-            <div class="uc"><h4>Expense &amp; Reimbursement Management</h4><p>Claims, advances and petty cash submitted with receipts, approved by limit and tracked to the last ringgit.</p></div>
-            <div class="uc"><h4>Payment approvals</h4><p>Multi-level sign-off with a complete, searchable audit trail.</p></div>
-            <div class="uc"><h4>Month-end reporting</h4><p>Data pulled, formatted and emailed automatically on schedule.</p></div>
-          </div>
-          <div class="tab-panel" role="tabpanel" data-panel="1">
-            <div class="uc"><h4>Stock takes</h4><p>Phone-based counting with photo proof and instant results for HQ.</p></div>
-            <div class="uc"><h4>New item registration</h4><p>One form, routed for review, and the master list updates itself.</p></div>
-            <div class="uc"><h4>Branch checklists</h4><p>Daily opening and closing checks with alerts for missed items.</p></div>
-            <div class="uc"><h4>Incident reporting</h4><p>Report on the spot, auto-assign an owner and track until it is closed.</p></div>
-          </div>
-          <div class="tab-panel" role="tabpanel" data-panel="2">
-            <div class="uc"><h4>Onboarding</h4><p>Accounts, equipment and paperwork triggered from a single request.</p></div>
-            <div class="uc"><h4>Leave &amp; requests</h4><p>Simple submissions with instant manager approval from email.</p></div>
-            <div class="uc"><h4>Document control</h4><p>Upload, review and approve documents with version history.</p></div>
-            <div class="uc"><h4>Meeting follow-ups</h4><p>Action items captured and sent to owners automatically.</p></div>
-          </div>
-          <div class="tab-panel" role="tabpanel" data-panel="3">
-            <div class="uc"><h4>Customer surveys</h4><p>Questions approved, distributed in batches and reminders sent on cut-off.</p></div>
-            <div class="uc"><h4>Feedback tracking</h4><p>Every response logged, scored and routed to the right team.</p></div>
-            <div class="uc"><h4>Complaint handling</h4><p>Clear ownership, deadlines and escalation when time runs out.</p></div>
-            <div class="uc"><h4>Quality audits</h4><p>Mobile audit forms with photos, scores and automatic reports.</p></div>
-          </div>
+        <div class="tab-panel on" data-panel="0">
+          <div class="uc"><h3>Purchase &amp; Asset Approvals</h3><p>Request, check and approve with automatic reference numbers.</p></div>
+          <div class="uc"><h3>Expense &amp; Reimbursement Management</h3><p>Claims, advances and petty cash with receipts and limits.</p></div>
+          <div class="uc"><h3>Invoices &amp; Payments</h3><p>Captured, checked and sent for payment without re-typing.</p></div>
+          <div class="uc"><h3>Month-end Reporting</h3><p>Reports pulled and emailed automatically on schedule.</p></div>
         </div>
+        <div class="tab-panel" data-panel="1">
+          <div class="uc"><h3>Stock Takes</h3><p>Phone counting with photo proof and instant results for HQ.</p></div>
+          <div class="uc"><h3>New Item Registration</h3><p>One form, routed for review. The master list updates itself.</p></div>
+          <div class="uc"><h3>Branch Checklists</h3><p>Daily opening and closing checks with alerts for missed items.</p></div>
+          <div class="uc"><h3>Incident Reporting</h3><p>Report on the spot, assign an owner and track until closed.</p></div>
+        </div>
+        <div class="tab-panel" data-panel="2">
+          <div class="uc"><h3>Onboarding</h3><p>Accounts, equipment and paperwork from a single request.</p></div>
+          <div class="uc"><h3>Leave &amp; Requests</h3><p>Simple submissions with one-click manager approval.</p></div>
+          <div class="uc"><h3>Document Control</h3><p>Upload, review and approve documents with version history.</p></div>
+          <div class="uc"><h3>Meeting Follow-ups</h3><p>Action items captured and sent to owners automatically.</p></div>
+        </div>
+        <div class="tab-panel" data-panel="3">
+          <div class="uc"><h3>Customer Surveys</h3><p>Approved, sent in batches, with reminders before cut-off.</p></div>
+          <div class="uc"><h3>Feedback Tracking</h3><p>Every response logged, scored and routed to the right team.</p></div>
+          <div class="uc"><h3>Complaint Handling</h3><p>Clear owners, deadlines and escalation when time runs out.</p></div>
+          <div class="uc"><h3>Quality Audits</h3><p>Mobile audit forms with photos, scores and reports.</p></div>
+        </div>
+
+        <div class="band-wrap reveal">
+      <div class="band">
+        <div><h2>What is manual work costing you?</h2><p>Change a few numbers and see your yearly savings.</p></div>
+        <button type="button" class="btn btn-primary" data-href="calculator.html">Open the calculator <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
-    </section>
-
-    <!-- ================= SAVINGS CALCULATOR ================= -->
-    <section class="section" id="calculator">
-      <div class="container">
-        <div class="calc reveal">
-          <div class="calc-inputs">
-            <p class="eyebrow">Savings estimator</p>
-            <h2>What is manual work<br><span class="grad">really costing you?</span></h2>
-            <p class="section-sub">Move the sliders to match one process in your business.</p>
-
-            <div class="field">
-              <div class="field-top"><label for="cPeople">People doing this task</label><output id="oPeople">5</output></div>
-              <input class="range" type="range" id="cPeople" min="1" max="50" value="5">
-            </div>
-            <div class="field">
-              <div class="field-top"><label for="cHours">Hours per person, per week</label><output id="oHours">6</output></div>
-              <input class="range" type="range" id="cHours" min="1" max="40" value="6">
-            </div>
-            <div class="field">
-              <div class="field-top"><label for="cRate">Cost per hour (RM)</label><output id="oRate">35</output></div>
-              <input class="range" type="range" id="cRate" min="10" max="200" step="5" value="35">
-            </div>
-            <div class="field">
-              <div class="field-top"><label for="cPct">Share that can be automated</label><output id="oPct">60%</output></div>
-              <input class="range" type="range" id="cPct" min="20" max="90" step="5" value="60">
-            </div>
-          </div>
-
-          <div class="calc-result">
-            <p class="mono-label">Estimated yearly impact</p>
-            <div class="result-big">
-              <p class="result-num" id="rCost">RM 30,240</p>
-              <p class="result-label">in staff time recovered every year</p>
-            </div>
-            <div class="result-grid">
-              <div><p class="result-mid" id="rHours">864</p><p class="result-label">hours freed per year</p></div>
-              <div><p class="result-mid" id="rFte">0.5</p><p class="result-label">full-time staff equivalent</p></div>
-            </div>
-            <p class="calc-note">Estimate based on 48 working weeks a year. Your actual savings depend on the process.</p>
-            <button type="button" class="btn btn-primary btn-lg full" data-go="contact">Get a precise assessment</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= WHY US ================= -->
-    <section class="section" id="why-us">
-      <div class="container">
-        <div class="section-head center reveal">
-          <p class="eyebrow">Why partner with us</p>
-          <h2>Built for you.<br><span class="soft">Explained simply.</span></h2>
-        </div>
-
-        <div class="why">
-          <article class="card why-card reveal">
-            <span class="why-icon wi-indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></span>
-            <h3>Tailored Development</h3>
-            <p>No rigid templates. Every screen, rule and workflow is designed around how your team really operates.</p>
-            <ul><li>Your process, your rules</li><li>Your branding throughout</li></ul>
-          </article>
-
-          <article class="card why-card reveal">
-            <span class="why-icon wi-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
-            <h3>Transparent Execution</h3>
-            <p>Direct, simple communication. You always know what is being built, why it matters and when it is ready.</p>
-            <ul><li>Clear scope before we start</li><li>Regular, honest updates</li></ul>
-          </article>
-
-          <article class="card why-card reveal">
-            <span class="why-icon wi-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 16v-4M11 16V8M16 16V5"/></svg></span>
-            <h3>Scalable Architecture</h3>
-            <p>Start with one process. Add teams, branches and workflows as you grow, without rebuilding from scratch.</p>
-            <ul><li>Modular by design</li><li>Ready for more users and data</li></ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= FAQ ================= -->
-    <section class="section" id="faq">
-      <div class="container narrow">
-        <div class="section-head center reveal">
-          <p class="eyebrow">FAQ</p>
-          <h2>Straight answers.</h2>
-        </div>
-
-        <div class="faq reveal">
-          <details>
-            <summary>What kind of businesses do you work with?</summary>
-            <p>Any organisation with repetitive admin, approvals or manual tracking. That includes finance, operations, retail, F&amp;B, logistics and service teams. If your team uses paper, email chains or spreadsheets to run a process, we can help.</p>
-          </details>
-          <details>
-            <summary>Do we need to buy new software?</summary>
-            <p>Usually not. Wherever possible we build on platforms you already pay for, such as Microsoft 365, SharePoint and Power Automate. When a custom web app is the better fit, we will explain why before we build it.</p>
-          </details>
-          <details>
-            <summary>How long does a project take?</summary>
-            <p>It depends on the process. Smaller workflows can often go live within weeks, and larger systems are delivered in stages so you see value early. You get a clear timeline before any work starts.</p>
-          </details>
-          <details>
-            <summary>Is our data secure?</summary>
-            <p>Your data stays in your own environment. We use role-based access so people only see what they should, and every action is logged in an audit trail.</p>
-          </details>
-          <details>
-            <summary>What happens after launch?</summary>
-            <p>We support your team through go-live, fix anything that comes up and help you improve or extend the system as your business changes.</p>
-          </details>
         </div>
       </div>
     </section>
@@ -535,55 +254,41 @@
     <section class="section" id="contact">
       <div class="container">
         <div class="contact reveal">
-          <div class="contact-glow"></div>
-
-          <div class="contact-copy">
+          <div>
             <p class="eyebrow">Free consultation</p>
             <h2>What is the one task your team <span class="grad">hates doing?</span></h2>
-            <p class="section-sub">Tell us about it. We will show you how to automate it. You get a clear plan, with no obligation and no sales pitch.</p>
-
-            <ol class="contact-steps">
-              <li><span>1</span>Tell us the problem</li>
-              <li><span>2</span>We map a clear solution</li>
-              <li><span>3</span>We build, launch and support it</li>
-            </ol>
-
+            <p class="sub">Tell us about it. We will show you how to automate it. No obligation and no sales pitch.</p>
             <p class="direct">Prefer email? <button type="button" class="link-btn" data-mail data-email-text>automatiovisio@gmail.com</button></p>
           </div>
 
           <form class="form" id="contactForm" novalidate>
-            <div class="form-row">
-              <div class="input">
-                <label for="fName">Your name</label>
-                <input id="fName" name="name" type="text" placeholder="Jane Tan" required>
-              </div>
-              <div class="input">
-                <label for="fCompany">Company</label>
-                <input id="fCompany" name="company" type="text" placeholder="Company name">
-              </div>
+            <div class="input">
+              <label for="fName">Your name</label>
+              <input id="fName" name="name" type="text" placeholder="Jane Tan" autocomplete="name" required>
+            </div>
+            <div class="input">
+              <label for="fCompany">Company</label>
+              <input id="fCompany" name="company" type="text" placeholder="Company name" autocomplete="organization">
             </div>
             <div class="input">
               <label for="fEmail">Work email</label>
-              <input id="fEmail" name="email" type="email" placeholder="you@company.com" required>
+              <input id="fEmail" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
             </div>
             <div class="input">
               <label for="fNeed">I need help with</label>
               <select id="fNeed" name="need">
                 <option>Business process automation</option>
-                <option>A custom enterprise web app</option>
+                <option>A custom business app</option>
                 <option>An operational tool (like StockSense)</option>
                 <option>Not sure yet, let's talk</option>
               </select>
             </div>
             <div class="input">
               <label for="fMsg">Which process slows you down?</label>
-              <textarea id="fMsg" name="message" rows="4" placeholder="e.g. Our purchase approvals take a week because forms go back and forth by email." required></textarea>
+              <textarea id="fMsg" name="message" rows="4" placeholder="e.g. Purchase approvals take a week because forms go back and forth by email." required></textarea>
             </div>
             <p class="form-error" id="formError" role="alert"></p>
-            <button type="submit" class="btn btn-primary btn-lg full" id="formBtn">
-              Book a Free Consultation
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </button>
+            <button type="submit" class="btn btn-primary block">Book a free consultation <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
             <p class="form-note">No obligation. No sales pitch. Just a clear plan.</p>
           </form>
         </div>
@@ -593,38 +298,32 @@
 
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <button type="button" class="brand" data-go="top" aria-label="Back to top">
-          <span class="brand-mark sm">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7l7 11 7-11"/><circle cx="12" cy="6.5" r="1.6" fill="#fff" stroke="none"/></svg>
-          </span>
-          <span class="brand-name">Automatio<span>Visio</span></span>
-        </button>
-        <p class="footer-tag">Work smarter, not harder.</p>
+    <div class="container">
+      <div class="f-grid">
+        <div>
+          <button type="button" class="brand" data-href="#top" aria-label="Back to home">
+            <span class="brand-mark"><svg viewBox="0 0 24 24"><path d="M5 7l7 11 7-11"/><circle cx="12" cy="6.5" r="1.6" fill="#fff" stroke="none"/></svg></span>
+            <span class="brand-name">Automatio<span>Visio</span></span>
+          </button>
+          <p class="f-tag">Work smarter, not harder.</p>
+        </div>
+        <div class="f-links">
+          <button type="button" data-href="#solutions">Solutions</button>
+          <button type="button" data-href="#stocksense">StockSense</button>
+          <button type="button" data-href="calculator.html">Calculator</button>
+          <button type="button" data-href="about.html">How we work</button>
+          <button type="button" data-href="faq.html">FAQ</button>
+          <button type="button" data-href="#contact">Contact</button>
+        </div>
       </div>
-
-      <div class="footer-links">
-        <button type="button" data-go="solutions">Solutions</button>
-        <button type="button" data-go="stocksense">StockSense</button>
-        <button type="button" data-go="why-us">Why Us</button>
-        <button type="button" data-go="faq">FAQ</button>
-        <button type="button" data-go="contact">Contact</button>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <p>© <span id="year">2026</span> AutomatioVisio. All rights reserved.</p>
-      <p>automatiovisio.com</p>
+      <div class="f-bottom"><p>© <span id="year">2026</span> AutomatioVisio. All rights reserved.</p><p>automatiovisio.com</p></div>
     </div>
   </footer>
 
-  <button type="button" class="to-top" id="toTop" aria-label="Back to top">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>
-  </button>
-
+  <button type="button" class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg></button>
   <div class="toast" id="toast" role="status"></div>
   <script>
-    document.body.appendChild(Object.assign(document.createElement("script"), { src: "script.js?v=10" }));
+    document.body.appendChild(Object.assign(document.createElement("script"), { src: "script.js?v=11" }));
   </script>
 </body>
 </html>
