@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>FAQ | AutomatioVisio</title>
-  <meta name="description" content="Straight answers about working with AutomatioVisio: software, timelines, security and support.">
+  <meta name="description" content="Straight answers about working with AutomatioVisio: solutions, timelines, security, mobile access, pricing and support.">
   <meta name="theme-color" content="#07090E">
   <script>
     (function () {
@@ -14,7 +14,7 @@
       setTimeout(function () { if (!window.__avReady) d.classList.remove("js"); }, 3000);
     })();
   </script>
-  <style>@import url("styles.css?v=14");</style>
+  <style>@import url("styles.css?v=17");</style>
   <script>
     document.head.appendChild(Object.assign(document.createElement("link"), { rel: "icon", type: "image/svg+xml", href: "favicon.svg" }));
   </script>
@@ -60,18 +60,90 @@
       <div class="container narrow">
         <p class="eyebrow">FAQ</p>
         <h1>Straight answers.</h1>
+        <p class="sub">Everything people usually ask before getting started. Tap a topic to jump to it.</p>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" style="padding-top:28px">
       <div class="container narrow">
-        <div class="faq">
-          <details><summary>What kind of businesses do you work with?</summary><p>Any organisation with repetitive admin, approvals or manual tracking, including finance, operations, retail, F&amp;B, logistics and service teams. If your team runs a process on paper, email chains or spreadsheets, we can help.</p></details>
-          <details><summary>Do we need to buy new software?</summary><p>Usually not. Wherever possible we build on platforms you already pay for, such as Microsoft 365, SharePoint and Power Automate. When a custom web app is the better fit, we explain why before we build it.</p></details>
-          <details><summary>How long does a project take?</summary><p>It depends on the process. Smaller workflows can often go live within weeks, and larger systems are delivered in stages so you see value early. You get a clear timeline before any work starts.</p></details>
-          <details><summary>Is our data secure?</summary><p>Your data stays in your own environment. We use role-based access so people only see what they should, and every action is logged in an audit trail.</p></details>
-          <details><summary>Can we try StockSense?</summary><p>Yes. Use the demo request on the home page and we will show you how StockSense would work for your stores.</p></details>
-          <details><summary>What happens after launch?</summary><p>We support your team through go-live, fix anything that comes up and help you improve or extend the system as your business changes.</p></details>
+        <div class="faq-nav">
+          <button type="button" class="jump" data-href="#grp-about">About</button>
+          <button type="button" class="jump" data-href="#grp-solutions">Solutions</button>
+          <button type="button" class="jump" data-href="#grp-start">Getting started</button>
+          <button type="button" class="jump" data-href="#grp-security">Security</button>
+          <button type="button" class="jump" data-href="#grp-mobile">Mobile</button>
+          <button type="button" class="jump" data-href="#grp-growth">Growth</button>
+          <button type="button" class="jump" data-href="#grp-pricing">Pricing</button>
+        </div>
+
+        <div class="faq-group" id="grp-about">
+          <h2><span>01</span>About AutomatioVisio</h2>
+          <div class="faq">
+            <details><summary>What does AutomatioVisio do?</summary><p>We design and build custom automation, business systems and digital workflows that streamline operations and reduce manual effort.</p></details>
+            <details><summary>Who do you work with?</summary><p>We work with organisations across finance, operations, retail, F&amp;B, logistics and service industries, from growing teams to established businesses.</p></details>
+            <details><summary>Do you provide ready-made products?</summary><p>No. Every solution is tailored to your business requirements. We build around how your organisation works instead of asking you to adapt to a generic product.</p></details>
+            <details><summary>Why choose AutomatioVisio?</summary><p>We focus on practical business outcomes: simpler operations, better visibility and less manual effort. You get clear communication throughout, in plain language.</p></details>
+          </div>
+        </div>
+
+        <div class="faq-group" id="grp-solutions">
+          <h2><span>02</span>Solutions</h2>
+          <div class="faq">
+            <details><summary>What types of processes can be automated?</summary><p>Common examples include approvals, claims, purchase requests, stock management, fixed asset tracking, onboarding, surveys, document reviews, checklists, reporting and notifications.</p></details>
+            <details><summary>How do I know if a process can be automated?</summary><p>If a task is repetitive, follows a set of rules or needs the same information entered more than once, it is usually a strong candidate.</p></details>
+            <details><summary>Will automation replace my team?</summary><p>No. Automation removes repetitive admin so your team can spend their time on work that needs judgement and care.</p></details>
+            <details><summary>Can an existing process be improved without replacing everything?</summary><p>Yes. Many organisations see significant gains by improving the process they already have instead of starting over.</p></details>
+            <details><summary>Can the system follow our own rules and approval levels?</summary><p>Yes. Workflows, approval paths, limits and business rules are set up around how your organisation works.</p></details>
+          </div>
+        </div>
+
+        <div class="faq-group" id="grp-start">
+          <h2><span>03</span>Getting started</h2>
+          <div class="faq">
+            <details><summary>How does a project begin?</summary><p>We start by understanding your current process, the problems it causes and the result you want. Then we propose a clear solution before anything is built.</p></details>
+            <details><summary>What if I am not sure what I need?</summary><p>That is perfectly fine. Most clients start with a business problem, not a technical requirement. We help you identify the best approach.</p></details>
+            <details><summary>How long does implementation take?</summary><p>It depends on the size and complexity of the process. Smaller solutions can go live within weeks, and larger ones are delivered in stages so you see value early. You get a clear timeline before work starts.</p></details>
+            <details><summary>Can changes be requested while it is being built?</summary><p>Yes. We build in stages so your team can test early and give feedback, and the solution is refined along the way.</p></details>
+            <details><summary>Do you provide training?</summary><p>Yes. We guide your team through go-live so people feel confident using the solution from day one.</p></details>
+          </div>
+        </div>
+
+        <div class="faq-group" id="grp-security">
+          <h2><span>04</span>Security &amp; data</h2>
+          <div class="faq">
+            <details><summary>Who owns the data?</summary><p>Your organisation keeps ownership of its business data.</p></details>
+            <details><summary>Can access be restricted?</summary><p>Yes. Access can be set by role and responsibility, so people only see and do what they should.</p></details>
+            <details><summary>Is activity tracked?</summary><p>Yes. Audit trails can record submissions, approvals and changes, so you can see who did what and when.</p></details>
+            <details><summary>Is our business information kept confidential?</summary><p>Yes. Confidentiality is treated as a priority throughout every engagement.</p></details>
+          </div>
+        </div>
+
+        <div class="faq-group" id="grp-mobile">
+          <h2><span>05</span>Mobile &amp; access</h2>
+          <div class="faq">
+            <details><summary>Can the solution be used on mobile phones?</summary><p>Yes. Solutions are designed to work on desktops, tablets and phones.</p></details>
+            <details><summary>Do users need to install anything?</summary><p>In most cases, no. Solutions open directly in a web browser.</p></details>
+            <details><summary>Can users upload photos and documents?</summary><p>Yes. Many solutions support photo capture, attachments and supporting documents.</p></details>
+            <details><summary>Can we try StockSense?</summary><p>Yes. Use the demo request on the home page and we will show you how StockSense would work for your stores.</p></details>
+          </div>
+        </div>
+
+        <div class="faq-group" id="grp-growth">
+          <h2><span>06</span>Integration &amp; growth</h2>
+          <div class="faq">
+            <details><summary>Can it work with the systems we already use?</summary><p>Where it makes sense, yes. Solutions can be designed to work alongside your existing tools and workflows.</p></details>
+            <details><summary>Can features be added later?</summary><p>Yes. Solutions are built so new steps, forms, reports and users can be added over time.</p></details>
+            <details><summary>What happens if our business grows?</summary><p>You can start with one process and extend to more teams, branches and workflows without starting from scratch.</p></details>
+          </div>
+        </div>
+
+        <div class="faq-group" id="grp-pricing">
+          <h2><span>07</span>Pricing &amp; support</h2>
+          <div class="faq">
+            <details><summary>How much does a solution cost?</summary><p>Cost depends on scope, features and complexity. After we understand your needs, you receive a clear quotation.</p></details>
+            <details><summary>Are there recurring charges?</summary><p>That depends on how the solution is set up and any third-party services involved. Every cost is discussed upfront.</p></details>
+            <details><summary>Do you offer support after launch?</summary><p>Yes. We support your team through go-live, fix anything that comes up and help you improve or extend the solution as your business changes.</p></details>
+          </div>
         </div>
 
         <div class="band-wrap">
@@ -90,7 +162,7 @@
       <div class="f-grid">
         <div>
           <p class="f-brand">Automatio<span>Visio</span></p>
-          <p class="f-tag">Work smarter, not harder.</p>
+          <p class="f-tag">Transforming manual processes into intelligent workflows.</p>
         </div>
         <div class="f-links">
           <button type="button" data-href="index.html#solutions">Solutions</button>
@@ -108,7 +180,7 @@
   <button type="button" class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg></button>
   <div class="toast" id="toast" role="status"></div>
   <script>
-    document.body.appendChild(Object.assign(document.createElement("script"), { src: "script.js?v=14" }));
+    document.body.appendChild(Object.assign(document.createElement("script"), { src: "script.js?v=17" }));
   </script>
 </body>
 </html>
