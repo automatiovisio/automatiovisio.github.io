@@ -31,7 +31,7 @@ const CONTACT_EMAIL = "automatiovisio@gmail.com";
       toast.textContent = msg;
       toast.classList.add("show");
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove("show"), 3000);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 3600);
     }
 
     /* ---------- Day / night mode ---------- */
@@ -228,7 +228,7 @@ const CONTACT_EMAIL = "automatiovisio@gmail.com";
         "<b>" + r.id + "</b> submitted by " + r.who,
         "Fields validated · attachments OK",
         "Approved by <b>" + r.by + "</b>",
-        "Record synced to SharePoint",
+        "Record updated in the system",
         "<b>Done.</b> Requester notified"
       ];
       const clock = () => new Date().toLocaleTimeString("en-GB", { hour12: false });
@@ -380,18 +380,22 @@ const CONTACT_EMAIL = "automatiovisio@gmail.com";
       render();
     }
 
-    /* ---------- Contact form ---------- */
+    /* ---------- Contact form: emails you automatically (FormSubmit) ---------- */
     const form = $("#contactForm");
     if (form) {
+      const FORM_ENDPOINT = "https://formsubmit.co/ajax/" + CONTACT_EMAIL;
       const err = $("#formError");
+      const sendBtn = form.querySelector('button[type="submit"]');
       const fName = $("#fName"), fEmail = $("#fEmail"), fMsg = $("#fMsg"), fNeed = $("#fNeed"), fCompany = $("#fCompany");
+
       $$("[data-prefill]").forEach((b) => b.addEventListener("click", () => {
         fNeed.value = b.dataset.prefill;
         if (!fMsg.value.trim()) fMsg.value = b.dataset.message || "";
         goTo("contact");
       }));
       [fName, fEmail, fMsg].forEach((f) => f.addEventListener("input", () => f.classList.remove("invalid")));
-      form.addEventListener("submit", (e) => {
+
+      form.addEventListener("submit", async (e) => {
         e.preventDefault();
         const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fEmail.value.trim());
         [fName, fEmail, fMsg].forEach((f) => f.classList.remove("invalid"));
@@ -406,12 +410,43 @@ const CONTACT_EMAIL = "automatiovisio@gmail.com";
           return;
         }
         err.textContent = "";
+
         const company = fCompany.value.trim();
-        const subject = "Consultation request: " + fNeed.value + (company ? " (" + company + ")" : "");
-        const body = "Name: " + fName.value.trim() + "\n" + "Company: " + (company || "-") + "\n" + "Email: " + fEmail.value.trim() + "\n" + "Interested in: " + fNeed.value + "\n\n" + "Process that slows us down:\n" + fMsg.value.trim();
-        window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-        showToast("Opening your email app. Just press Send.");
-        form.reset();
+        const payload = {
+          _subject: "New enquiry: " + fNeed.value + (company ? " (" + company + ")" : ""),
+          _template: "table",
+          _captcha: "false",
+          _honey: "",
+          name: fName.value.trim(),
+          company: company || "-",
+          email: fEmail.value.trim(),
+          interested_in: fNeed.value,
+          message: fMsg.value.trim(),
+          submitted_at: new Date().toLocaleString("en-MY", { timeZone: "Asia/Kuala_Lumpur" })
+        };
+
+        const label = sendBtn.innerHTML;
+        sendBtn.disabled = true;
+        sendBtn.textContent = "Sending...";
+        try {
+          const res = await fetch(FORM_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+          if (!res.ok || String(data.success) !== "true") throw new Error("send failed");
+          showToast("Thank you. We received your enquiry and will reply soon.");
+          form.reset();
+        } catch (x) {
+          // Safety net: if the email service is unavailable, open the visitor's email app instead
+          const body = "Name: " + payload.name + "\nCompany: " + payload.company + "\nEmail: " + payload.email + "\nInterested in: " + payload.interested_in + "\n\nProcess that slows us down:\n" + payload.message;
+          window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(payload._subject) + "&body=" + encodeURIComponent(body);
+          showToast("Opening your email app. Just press Send.");
+        } finally {
+          sendBtn.disabled = false;
+          sendBtn.innerHTML = label;
+        }
       });
     }
   }
