@@ -129,6 +129,7 @@ h2 { margin-top: 10px; font-size: clamp(1.75rem, 6.6vw, 2.6rem); font-weight: 80
 }
 .btn svg { width: 16px; height: 16px; }
 .btn:active { transform: scale(0.98); }
+.btn:disabled { opacity: 0.7; cursor: wait; }
 .btn-primary { background: var(--grad-btn); box-shadow: 0 10px 26px -12px rgba(99, 102, 241, 0.8); }
 .btn-ghost { color: var(--ink); background: var(--card); border: 1px solid var(--line-2); box-shadow: var(--card-shadow); }
 .btn.sm { min-height: 42px; padding: 0 18px; font-size: 14px; }
@@ -159,7 +160,7 @@ h2 { margin-top: 10px; font-size: clamp(1.75rem, 6.6vw, 2.6rem); font-weight: 80
 .brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; min-width: 0; margin-right: auto; }
 .brand-mark {
   display: block; width: 42px; height: 42px; flex-shrink: 0; border-radius: 12px;
-  background: url("Logo-icon.png?v=16") center / cover no-repeat, url("logo-icon.png?v=16") center / cover no-repeat;
+  background: url("Logo-icon.png?v=17") center / cover no-repeat, url("logo-icon.png?v=17") center / cover no-repeat;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14), 0 8px 18px -10px rgba(0, 0, 0, 0.7);
 }
 html.light .brand-mark { box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.14), 0 8px 18px -10px rgba(30, 41, 99, 0.35); }
@@ -417,6 +418,14 @@ html.light .tt-sun { opacity: 1; transform: none; }
 .faq details[open] summary::after { content: "–"; }
 .faq details p { padding: 0 18px 18px; font-size: 15px; line-height: 1.7; color: var(--muted); }
 
+/* FAQ page: quick-jump chips + grouped sections */
+.faq-nav { display: flex; flex-wrap: wrap; gap: 8px; }
+.jump { min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--muted); background: var(--card); border: 1px solid var(--line-2); }
+.jump:active { background: var(--card-2); color: var(--ink); }
+.faq-group { margin-top: 34px; scroll-margin-top: 84px; }
+.faq-group h2 { margin: 0 0 14px; font-size: clamp(1.3rem, 5vw, 1.7rem); letter-spacing: -0.02em; }
+.faq-group h2 span { color: var(--c-indigo); font: 600 12px var(--mono); letter-spacing: 0.12em; margin-right: 10px; }
+
 /* Single-column grids may never grow wider than the screen */
 .hero-grid, .cards, .spot, .contact, .calc, .compare, .steps, .why, .tab-panel, .faq, .f-grid, .band, .form, .items { grid-template-columns: minmax(0, 1fr); }
 
@@ -425,7 +434,7 @@ html.light .tt-sun { opacity: 1; transform: none; }
 .f-grid { display: grid; gap: 18px; }
 .f-brand { font-weight: 700; font-size: 18px; letter-spacing: -0.02em; color: var(--ink); }
 .f-brand span { color: var(--gold); }
-.f-tag { margin-top: 4px; font-size: 13px; color: var(--dim); }
+.f-tag { margin-top: 4px; font-size: 13px; color: var(--dim); max-width: 26rem; }
 .f-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
 .f-links button { min-height: 40px; font-size: 14px; color: var(--muted); }
 .f-bottom { margin-top: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--dim); }
@@ -514,6 +523,7 @@ html.light .tt-sun { opacity: 1; transform: none; }
   .card:hover, .uc:hover, .step:hover { transform: translateY(-4px); border-color: rgba(129, 140, 248, 0.4); }
   .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
   .btn-ghost:hover { border-color: rgba(129, 140, 248, 0.55); }
+  .jump:hover { border-color: rgba(129, 140, 248, 0.55); color: var(--ink); }
   .st-btn:hover { filter: brightness(1.15); }
   .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
   .js .reveal.in { opacity: 1; transform: none; }
