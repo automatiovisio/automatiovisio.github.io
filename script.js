@@ -212,6 +212,14 @@ const CONTACT_EMAIL = "automatiovisio@gmail.com";
       addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { size(); update(); }, 200); });
     }
 
+         /* ---------- Workflow card animation (plays only while on screen) ---------- */
+    const flow = $(".flow");
+    if (flow && !reduce && "IntersectionObserver" in window) {
+      let vis = false;
+      const sync = () => flow.classList.toggle("play", vis && !document.hidden);
+      new IntersectionObserver(([en]) => { vis = en.isIntersecting; sync(); }, { threshold: 0.3 }).observe(flow);
+      document.addEventListener("visibilitychange", sync);
+    }
     /* ---------- Hero live console (runs only while visible) ---------- */
     const con = $("#console");
     if (con) {
