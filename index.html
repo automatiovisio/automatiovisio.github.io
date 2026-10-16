@@ -1328,20 +1328,27 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
       render();
     });
 
-    /* ---------- Contact form: emails you automatically (FormSubmit) ---------- */
+    /* ---------- Contact form: stores enquiries securely in Supabase ---------- */
     safe("contact form", function () {
       var form = $("#contactForm");
       if (!form) return;
-      var EMAIL = (window.AV && window.AV.email) || "automatiovisio@gmail.com";
-      var ENDPOINT = "https://formsubmit.co/ajax/" + EMAIL;
+
+      var SUPABASE_URL = "https://ndsdqcdaxtqpjopuycnb.supabase.co";
+      var SUPABASE_PUBLISHABLE_KEY = "sb_publishable_kbYcoHhgX-3nv6-CBiK5YA__srweiwU";
+      var ENDPOINT = SUPABASE_URL + "/rest/v1/solution_enquiries";
+
       var err = $("#formError"), sendBtn = form.querySelector('button[type="submit"]');
       var fName = $("#fName"), fEmail = $("#fEmail"), fMsg = $("#fMsg"), fNeed = $("#fNeed"), fCompany = $("#fCompany");
 
       function prefill(need, msg) {
         if (NEED[need]) fNeed.value = NEED[need];
         var text = msg || NEED_MSG[need] || "";
-        if (text && (!fMsg.value.trim() || fMsg.getAttribute("data-auto") === "1")) { fMsg.value = text; fMsg.setAttribute("data-auto", "1"); }
+        if (text && (!fMsg.value.trim() || fMsg.getAttribute("data-auto") === "1")) {
+          fMsg.value = text;
+          fMsg.setAttribute("data-auto", "1");
+        }
       }
+
       document.addEventListener("click", function (e) {
         var t = e.target.closest("[data-need]");
         if (!t) return;
@@ -1350,45 +1357,82 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
         AV.closeAll();
         goTo("contact");
       });
+
       var q = new URLSearchParams(location.search).get("need");
       if (q) prefill(q);
-
       fMsg.addEventListener("input", function () { fMsg.setAttribute("data-auto", "0"); });
-      [fName, fEmail, fMsg].forEach(function (f) { f.addEventListener("input", function () { f.classList.remove("invalid"); }); });
+      [fName, fEmail, fMsg].forEach(function (f) {
+        f.addEventListener("input", function () { f.classList.remove("invalid"); });
+      });
+
       form.addEventListener("submit", function (e) {
         e.preventDefault();
-        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fEmail.value.trim());
+        if (sendBtn.disabled) return;
+
+        var name = fName.value.trim();
+        var company = fCompany.value.trim();
+        var email = fEmail.value.trim().toLowerCase();
+        var message = fMsg.value.trim();
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
         [fName, fEmail, fMsg].forEach(function (f) { f.classList.remove("invalid"); });
         var bad = [];
-        if (!fName.value.trim()) bad.push(fName);
+        if (name.length < 2) bad.push(fName);
         if (!emailOk) bad.push(fEmail);
-        if (!fMsg.value.trim()) bad.push(fMsg);
+        if (message.length < 5) bad.push(fMsg);
+
         if (bad.length) {
           bad.forEach(function (f) { f.classList.add("invalid"); });
-          err.textContent = emailOk || !fEmail.value.trim() ? "Please fill in the highlighted fields." : "Please enter a valid email address.";
+          err.textContent = !emailOk && fEmail.value.trim()
+            ? "Please enter a valid email address."
+            : "Please fill in the highlighted fields.";
           bad[0].focus();
           return;
         }
+
         err.textContent = "";
-        var company = fCompany.value.trim();
         var payload = {
-          _subject: "New enquiry: " + fNeed.value + (company ? " (" + company + ")" : ""),
-          _template: "table", _captcha: "false", _honey: "",
-          name: fName.value.trim(), company: company || "-", email: fEmail.value.trim(),
-          interested_in: fNeed.value, message: fMsg.value.trim(),
-          submitted_at: new Date().toLocaleString("en-MY", { timeZone: "Asia/Kuala_Lumpur" })
+          name: name,
+          company: company || null,
+          work_email: email,
+          help_with: fNeed.value,
+          message: message
         };
+
         var label = sendBtn.innerHTML;
-        sendBtn.disabled = true; sendBtn.textContent = "Sending...";
-        function restore() { sendBtn.disabled = false; sendBtn.innerHTML = label; }
-        fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(payload) })
-          .then(function (res) { return res.json().then(function (data) { if (!res.ok || String(data.success) !== "true") throw new Error("send failed"); }); })
-          .then(function () { showToast("Thank you. We received your enquiry and will reply soon."); form.reset(); restore(); })
-          .catch(function () {
-            var body = "Name: " + payload.name + "\nCompany: " + payload.company + "\nEmail: " + payload.email + "\nInterested in: " + payload.interested_in + "\n\nMessage:\n" + payload.message;
-            restore();
-            showToast("Opening your email app. Just press Send.");
-            window.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(payload._subject) + "&body=" + encodeURIComponent(body);
+        sendBtn.disabled = true;
+        sendBtn.textContent = "Sending...";
+
+        fetch(ENDPOINT, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_PUBLISHABLE_KEY,
+            "Authorization": "Bearer " + SUPABASE_PUBLISHABLE_KEY,
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify(payload)
+        })
+          .then(function (res) {
+            if (!res.ok) {
+              return res.text().then(function (details) {
+                throw new Error(details || "Submission failed with status " + res.status);
+              });
+            }
+          })
+          .then(function () {
+            form.reset();
+            fMsg.setAttribute("data-auto", "0");
+            showToast("Thank you. We received your enquiry and will reply soon.");
+          })
+          .catch(function (error) {
+            console.error("[AutomatioVisio] Supabase submission failed", error);
+            err.textContent = "We could not submit your enquiry right now. Please try again or contact us by WhatsApp or email.";
+          })
+          .finally(function () {
+            sendBtn.disabled = false;
+            sendBtn.innerHTML = label;
           });
       });
     });
