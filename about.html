@@ -721,7 +721,7 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
   "use strict";
 
   // ---- Edit these three lines to change contact details ----
-  var CONTACT_EMAIL = "automatiovisio@gmail.com";
+  var CONTACT_EMAIL = "info@automatiovisio.com";
   var WHATSAPP_NUMBER = "+601128398230"; // WhatsApp needs the full international number, e.g. +60123456789
   var WHATSAPP_MESSAGE = "Hello AutomatioVisio, I would like to discuss a project.";
   // -----------------------------------------------------------
@@ -1194,7 +1194,7 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
     safe("contact form", function () {
       var form = $("#contactForm");
       if (!form) return;
-      var EMAIL = (window.AV && window.AV.email) || "automatiovisio@gmail.com";
+      var EMAIL = (window.AV && window.AV.email) || "info@automatiovisio.com";
       var ENDPOINT = "https://formsubmit.co/ajax/" + EMAIL;
       var err = $("#formError"), sendBtn = form.querySelector('button[type="submit"]');
       var fName = $("#fName"), fEmail = $("#fEmail"), fMsg = $("#fMsg"), fNeed = $("#fNeed"), fCompany = $("#fCompany");
