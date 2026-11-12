@@ -1328,14 +1328,13 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
       render();
     });
 
-    /* ---------- Contact form: stores enquiries securely in Supabase ---------- */
+    /* ---------- Contact form: sends enquiries to Power Automate ---------- */
     safe("contact form", function () {
       var form = $("#contactForm");
       if (!form) return;
 
-      var SUPABASE_URL = "https://ndsdqcdaxtqpjopuycnb.supabase.co";
-      var SUPABASE_PUBLISHABLE_KEY = "sb_publishable_kbYcoHhgX-3nv6-CBiK5YA__srweiwU";
-      var ENDPOINT = SUPABASE_URL + "/rest/v1/solution_enquiries";
+      /* Paste the complete URL from the Power Automate HTTP trigger below. */
+      var POWER_AUTOMATE_URL = "https://default3c676975b73149e5892e30e0bd83c4.40.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/29/workflows/f2f9dd31bd024cdf961ccdbd4e29234e/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=M1Z954j01pr9UyrlIfPFieltGyYEFa89Wb1IGzVKbLY";
 
       var err = $("#formError"), sendBtn = form.querySelector('button[type="submit"]');
       var fName = $("#fName"), fEmail = $("#fEmail"), fMsg = $("#fMsg"), fNeed = $("#fNeed"), fCompany = $("#fCompany");
@@ -1392,42 +1391,55 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
 
         err.textContent = "";
         var payload = {
-          name: name,
-          company: company || null,
-          work_email: email,
-          help_with: fNeed.value,
-          message: message
+          enquirerName: name,
+          company: company,
+          workEmail: email,
+          helpWith: fNeed.value,
+          enquiryMessage: message
         };
 
         var label = sendBtn.innerHTML;
         sendBtn.disabled = true;
         sendBtn.textContent = "Sending...";
 
-        fetch(ENDPOINT, {
+        if (!POWER_AUTOMATE_URL || POWER_AUTOMATE_URL.indexOf("PASTE_YOUR_") === 0) {
+          err.textContent = "Power Automate is not configured yet. Please add the HTTP POST URL to the website code.";
+          sendBtn.disabled = false;
+          sendBtn.innerHTML = label;
+          return;
+        }
+
+        fetch(POWER_AUTOMATE_URL, {
           method: "POST",
           headers: {
-            "apikey": SUPABASE_PUBLISHABLE_KEY,
-            "Authorization": "Bearer " + SUPABASE_PUBLISHABLE_KEY,
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Prefer": "return=minimal"
+            "Content-Type": "application/json"
           },
           body: JSON.stringify(payload)
         })
           .then(function (res) {
-            if (!res.ok) {
-              return res.text().then(function (details) {
-                throw new Error(details || "Submission failed with status " + res.status);
-              });
-            }
+            return res.text().then(function (bodyText) {
+              var responseBody = {};
+              if (bodyText) {
+                try { responseBody = JSON.parse(bodyText); }
+                catch (parseError) { responseBody = {}; }
+              }
+              if (!res.ok) {
+                throw new Error(responseBody.message || "Submission failed with status " + res.status);
+              }
+              return responseBody;
+            });
           })
-          .then(function () {
+          .then(function (responseBody) {
             form.reset();
             fMsg.setAttribute("data-auto", "0");
-            showToast("Thank you. We received your enquiry and will reply soon.");
+            var successMessage = responseBody.message || "Thank you. We received your enquiry and will reply soon.";
+            if (responseBody.enquiryReference) {
+              successMessage += " Your reference is " + responseBody.enquiryReference + ".";
+            }
+            showToast(successMessage);
           })
           .catch(function (error) {
-            console.error("[AutomatioVisio] Supabase submission failed", error);
+            console.error("[AutomatioVisio] Power Automate submission failed", error);
             err.textContent = "We could not submit your enquiry right now. Please try again or contact us by WhatsApp or email.";
           })
           .finally(function () {
