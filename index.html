@@ -312,6 +312,9 @@ html.light .opt-wa .fi { color: #15803d; }
 .form-error { font-size: 13px; color: var(--c-red); }
 .form-error:empty { display: none; }
 .form-note { text-align: center; font-size: 12px; color: var(--dim); }
+.input-help { display: block; margin-top: 6px; font-size: 12px; line-height: 1.5; color: var(--dim); }
+.input-optional { color: var(--dim); font-weight: 400; }
+.conditional-field[hidden] { display: none; }
 
 /* ---------- Inner pages ---------- */
 .page-hero { padding: 108px 0 8px; }
@@ -810,6 +813,20 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
             <div class="input"><label for="fName">Your name</label><input id="fName" name="name" type="text" placeholder="Jane Tan" autocomplete="name" required></div>
             <div class="input"><label for="fCompany">Company</label><input id="fCompany" name="company" type="text" placeholder="Company name" autocomplete="organization"></div>
             <div class="input"><label for="fEmail">Work email</label><input id="fEmail" name="email" type="email" placeholder="you@company.com" autocomplete="email" required></div>
+            <div class="input">
+              <label for="fContactMethod">Preferred contact method</label>
+              <select id="fContactMethod" name="preferredContactMethod" required>
+                <option value="Email">Email</option>
+                <option value="Phone call">Phone call</option>
+                <option value="WhatsApp">WhatsApp</option>
+              </select>
+              <small class="input-help">Email is selected by default.</small>
+            </div>
+            <div class="input conditional-field" id="phoneField" hidden>
+              <label for="fPhone">Phone number <span class="input-optional">(required for phone or WhatsApp)</span></label>
+              <input id="fPhone" name="phoneNumber" type="tel" inputmode="tel" autocomplete="tel" maxlength="25" placeholder="e.g. +60 12-345 6789" aria-describedby="phoneHelp">
+              <small class="input-help" id="phoneHelp">Please include the country code.</small>
+            </div>
             <div class="input">
               <label for="fNeed">I need help with</label>
               <select id="fNeed" name="need">
@@ -1338,6 +1355,19 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
 
       var err = $("#formError"), sendBtn = form.querySelector('button[type="submit"]');
       var fName = $("#fName"), fEmail = $("#fEmail"), fMsg = $("#fMsg"), fNeed = $("#fNeed"), fCompany = $("#fCompany");
+      var fContactMethod = $("#fContactMethod"), fPhone = $("#fPhone"), phoneField = $("#phoneField");
+      function syncPhoneField() {
+        var needsPhone = fContactMethod.value === "Phone call" || fContactMethod.value === "WhatsApp";
+        phoneField.hidden = !needsPhone;
+        fPhone.required = needsPhone;
+        fPhone.setAttribute("aria-required", String(needsPhone));
+        if (!needsPhone) {
+          fPhone.classList.remove("invalid");
+          fPhone.value = "";
+        }
+      }
+      fContactMethod.addEventListener("change", syncPhoneField);
+      syncPhoneField();
 
       function prefill(need, msg) {
         if (NEED[need]) fNeed.value = NEED[need];
@@ -1360,7 +1390,7 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
       var q = new URLSearchParams(location.search).get("need");
       if (q) prefill(q);
       fMsg.addEventListener("input", function () { fMsg.setAttribute("data-auto", "0"); });
-      [fName, fEmail, fMsg].forEach(function (f) {
+      [fName, fEmail, fMsg, fPhone].forEach(function (f) {
         f.addEventListener("input", function () { f.classList.remove("invalid"); });
       });
 
@@ -1372,19 +1402,27 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
         var company = fCompany.value.trim();
         var email = fEmail.value.trim().toLowerCase();
         var message = fMsg.value.trim();
+        var preferredContactMethod = fContactMethod.value;
+        var phoneNumber = fPhone.value.trim();
+        var needsPhone = preferredContactMethod === "Phone call" || preferredContactMethod === "WhatsApp";
+        var phoneDigits = phoneNumber.replace(/\D/g, "");
         var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        var phoneOk = !needsPhone || (phoneDigits.length >= 7 && phoneDigits.length <= 15);
 
-        [fName, fEmail, fMsg].forEach(function (f) { f.classList.remove("invalid"); });
+        [fName, fEmail, fMsg, fPhone].forEach(function (f) { f.classList.remove("invalid"); });
         var bad = [];
         if (name.length < 2) bad.push(fName);
         if (!emailOk) bad.push(fEmail);
+        if (!phoneOk) bad.push(fPhone);
         if (message.length < 5) bad.push(fMsg);
 
         if (bad.length) {
           bad.forEach(function (f) { f.classList.add("invalid"); });
           err.textContent = !emailOk && fEmail.value.trim()
             ? "Please enter a valid email address."
-            : "Please fill in the highlighted fields.";
+            : !phoneOk
+              ? "Please enter a valid phone number with 7 to 15 digits, including the country code."
+              : "Please fill in the highlighted fields.";
           bad[0].focus();
           return;
         }
@@ -1394,6 +1432,8 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
           enquirerName: name,
           company: company,
           workEmail: email,
+          phoneNumber: phoneNumber,
+          preferredContactMethod: preferredContactMethod,
           helpWith: fNeed.value,
           enquiryMessage: message
         };
@@ -1432,6 +1472,7 @@ html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *
           .then(function (responseBody) {
             form.reset();
             fMsg.setAttribute("data-auto", "0");
+            syncPhoneField();
             var successMessage = responseBody.message || "Thank you. We received your enquiry and will reply soon.";
             if (responseBody.enquiryReference) {
               successMessage += " Your reference is " + responseBody.enquiryReference + ".";
